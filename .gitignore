@@ -34,5 +34,5 @@ node_modules/
 *.pem
 
 # ignore dotenv file
-.env
+*.env
 
