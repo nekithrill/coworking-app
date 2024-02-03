@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const AdminController = require('../controllers/adminController')
+const AdminController = require('../controllers/admin.controller')
 
 // User
 router.post('/users/register', AdminController.registerUser)
