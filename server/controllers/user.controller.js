@@ -1,13 +1,14 @@
 const User = require('../models/user.model')
-const Workspace = require('../models/workspace.model')
-const Booking = require('../models/booking.model')
+const { errorHandler } = require('../utils/errorHandler')
 
+// * User
 const registerUser = async (req, res) => {
 	try {
 		const newUser = await User.create(req.body)
 		res.status(201).json(newUser)
 	} catch (error) {
-		res.status(400).json({ message: error.message })
+		errorHandler(400, error, res)
+		// res.status(400).json({ message: error.message })
 	}
 }
 
@@ -15,62 +16,60 @@ const loginUser = (req, res) => {
 	// Логика входа пользователя
 }
 
-const getUserProfile = (req, res) => {
-	// Получение профиля пользователя
-}
-
-const updateUserProfile = (req, res) => {
-	// Обновление профиля пользователя
-}
-
-const getAllWorkspaces = async (req, res) => {
+const getAllUsers = async (req, res) => {
 	try {
-		// Логика поиска и фильтрации рабочих мест
-		const filters = req.query // Здесь можно использовать параметры запроса для фильтрации
-		const workspaces = await Workspace.find(filters)
-
-		res.status(200).json(workspaces)
+		const allUsers = await User.find()
+		res.status(200).json(allUsers)
 	} catch (error) {
 		res.status(400).json({ message: error.message })
 	}
 }
 
-const createBooking = async (req, res) => {
+const getUserById = async (req, res) => {
 	try {
-		const { workspaceId, date } = req.body
-
-		// Проверка на доступность места перед бронированием
-		const isWorkspaceAvailable = await Workspace.findOne({
-			_id: workspaceId,
-			isOccupied: false
-		})
-		if (!isWorkspaceAvailable) {
-			return res
-				.status(400)
-				.json({ message: 'Рабочее место уже занято или не существует.' })
+		const user = await User.findById(req.params.userId)
+		if (!user) {
+			return res.status(404).json({ message: 'User not found' })
 		}
-
-		// Логика бронирования места
-		const newBooking = await Booking.create({
-			userId: req.params.userId, // или откуда вы берете информацию о текущем пользователе
-			workspaceId,
-			date
-		})
-
-		// Обновление статуса места на "занято"
-		await Workspace.findByIdAndUpdate(workspaceId, { isOccupied: true })
-
-		res.status(201).json(newBooking)
+		res.status(200).json(user)
 	} catch (error) {
-		res.status(400).json({ message: error.message })
+		res.status(500).json({ message: error.message })
+	}
+}
+
+const updateUserById = async (req, res) => {
+	try {
+		const updatedUser = await User.findByIdAndUpdate(
+			req.params.userId,
+			req.body,
+			{ new: true }
+		)
+		if (!updatedUser) {
+			return res.status(404).json({ message: 'User not found' })
+		}
+		res.status(200).json(updatedUser)
+	} catch (error) {
+		res.status(500).json({ message: error.message })
+	}
+}
+
+const deleteUserById = async (req, res) => {
+	try {
+		const deletedUser = await User.findByIdAndDelete(req.params.userId)
+		if (!deletedUser) {
+			return res.status(404).json({ message: 'User not found' })
+		}
+		res.status(200).json({ message: 'User deleted successfully' })
+	} catch (error) {
+		res.status(500).json({ message: error.message })
 	}
 }
 
 module.exports = {
 	registerUser,
 	loginUser,
-	getUserProfile,
-	updateUserProfile,
-	getAllWorkspaces,
-	createBooking
+	getAllUsers,
+	getUserById,
+	updateUserById,
+	deleteUserById
 }
