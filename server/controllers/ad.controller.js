@@ -7,7 +7,7 @@ const createAd = async (req, res) => {
 		const newAd = await Ad.create(req.body)
 		res.status(201).json(newAd)
 	} catch (error) {
-		res.status(400).json({ message: error.message })
+		errorHandler(400, error, res)
 	}
 }
 
@@ -16,16 +16,19 @@ const getAllAds = async (req, res) => {
 		const allAds = await Ad.find()
 		res.status(200).json(allAds)
 	} catch (error) {
-		res.status(400).json({ message: error.message })
+		errorHandler(400, error, res)
 	}
 }
 
 const getAdById = async (req, res) => {
 	try {
 		const ad = await Ad.findById(req.params.adId)
+		if (!ad) {
+			return errorHandler(404, error, res)
+		}
 		res.status(200).json(ad)
 	} catch (error) {
-		res.status(400).json({ message: error.message })
+		errorHandler(400, error, res)
 	}
 }
 
@@ -34,18 +37,24 @@ const updateAdById = async (req, res) => {
 		const updatedAd = await Ad.findByIdAndUpdate(req.params.adId, req.body, {
 			new: true
 		})
+		if (!updatedAd) {
+			return errorHandler(404, error, res)
+		}
 		res.status(200).json(updatedAd)
 	} catch (error) {
-		res.status(400).json({ message: error.message })
+		errorHandler(400, error, res)
 	}
 }
 
 const deleteAdById = async (req, res) => {
 	try {
-		await Ad.findByIdAndDelete(req.params.adId)
-		res.status(204).send()
+		const deletedAd = await Ad.findByIdAndDelete(req.params.adId)
+		if (!deletedAd) {
+			return errorHandler(404, error, res)
+		}
+		res.status(200).json({ message: 'Ad deleted successfully!' })
 	} catch (error) {
-		res.status(400).json({ message: error.message })
+		errorHandler(400, error, res)
 	}
 }
 
