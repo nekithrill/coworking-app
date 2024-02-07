@@ -5,10 +5,31 @@ const authMiddleware = require('../middlewares/auth.middleware')
 const isAdminMiddleware = require('../middlewares/isAdmin.middleware')
 
 // * User
-userRouter.post('/user/register', userController.registerUser)
-userRouter.get('/users', userController.getAllUsers)
-userRouter.get('/user/:userId', userController.getUserById)
-userRouter.put('/user/:userId', userController.updateUserById)
-userRouter.delete('/user/:userId', userController.deleteUserById)
+userRouter.post('/register', userController.registerUser)
+userRouter.post('/login', userController.loginUser)
+userRouter.get(
+	'/all',
+	authMiddleware,
+	isAdminMiddleware,
+	userController.getAllUsers
+)
+userRouter.get(
+	'/:userId',
+	authMiddleware,
+	isAdminMiddleware,
+	userController.getUserById
+)
+userRouter.put(
+	'/edit/:userId',
+	authMiddleware,
+	isAdminMiddleware,
+	userController.updateUserById
+)
+userRouter.delete(
+	'/delete/:userId',
+	authMiddleware,
+	isAdminMiddleware,
+	userController.deleteUserById
+)
 
 module.exports = userRouter
