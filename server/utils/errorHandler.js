@@ -29,7 +29,7 @@ const handleRequestTimeoutError = (err, res) => {
 const handleTooManyRequestsError = (err, res) => {
 	res
 		.status(429)
-		.json({ error: 'Too Many Requests error', details: err.errors })
+		.json({ error: 'Too Many Requests error', details: err.details })
 }
 
 // 500 Internal Server
@@ -65,25 +65,6 @@ const handleCustomError = (err, res) => {
 		.status(err.status || 500)
 		.json({ error: err.message || 'Internal Server Error' })
 }
-
-// const errorHandlers = {
-// 	400: handleBadRequestError,
-// 	401: handleAuthenticationError,
-// 	403: handleForbiddenError,
-// 	404: handleNotFoundError,
-// 	408: handleRequestTimeoutError,
-// 	429: handleTooManyRequestsError,
-// 	500: handleInternalServerError,
-// 	501: handleNotImplementedError,
-// 	502: handleBadGatewayError,
-// 	503: handleServiceUnavailableError,
-// 	504: handleGatewayTimeoutError
-// }
-
-// const errorHandler = (statusCode, err, res) => {
-// 	const handler = errorHandlers[statusCode] || handleCustomError
-// 	handler(err, res)
-// }
 
 const errorHandler = (statusCode, err, res) => {
 	switch (statusCode) {
