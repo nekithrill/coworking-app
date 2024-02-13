@@ -1,7 +1,7 @@
 const News = require('../models/news.model')
 const { errorHandler } = require('../utils/errorHandler')
 
-// * News
+// [@] News
 const createNews = async (req, res) => {
 	try {
 		const newNews = await News.create(req.body)

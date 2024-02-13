@@ -1,7 +1,7 @@
 const Booking = require('../models/booking.model')
 const { errorHandler } = require('../utils/errorHandler')
 
-// * Booking
+// [@] Booking
 const createBooking = async (req, res) => {
 	try {
 		const newBooking = await Booking.create(req.body)

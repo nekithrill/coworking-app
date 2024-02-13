@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 const generateToken = require('../utils/generateToken')
 const { errorHandler } = require('../utils/errorHandler')
 
-// * User
+// [@] User
 const registerUser = async (req, res) => {
 	try {
 		const { password, ...userData } = req.body

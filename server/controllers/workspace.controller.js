@@ -1,7 +1,7 @@
 const Workspace = require('../models/workspace.model')
 const { errorHandler } = require('../utils/errorHandler')
 
-// * Workspace
+// [@] Workspace
 const createWorkspace = async (req, res) => {
 	try {
 		const newWorkspace = await Workspace.create(req.body)

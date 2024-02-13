@@ -1,7 +1,7 @@
 const Ad = require('../models/ad.model')
 const { errorHandler } = require('../utils/errorHandler')
 
-// * Ad
+// [@] Ad
 const createAd = async (req, res) => {
 	try {
 		const newAd = await Ad.create(req.body)
