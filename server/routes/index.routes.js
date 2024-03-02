@@ -1,5 +1,5 @@
 const express = require('express')
-const mainRouter = express.Router()
+const Router = express.Router()
 
 const adRouter = require('./ad.routes')
 const bookingRouter = require('./booking.routes')
@@ -7,10 +7,10 @@ const newsRouter = require('./news.routes')
 const userRouter = require('./user.routes')
 const workspaceRouter = require('./workspace.routes')
 
-mainRouter.use('/ad', adRouter)
-mainRouter.use('/booking', bookingRouter)
-mainRouter.use('/news', newsRouter)
-mainRouter.use('/user', userRouter)
-mainRouter.use('/workspace', workspaceRouter)
+Router.use('/ad', adRouter)
+Router.use('/booking', bookingRouter)
+Router.use('/news', newsRouter)
+Router.use('/user', userRouter)
+Router.use('/workspace', workspaceRouter)
 
-module.exports = mainRouter
+module.exports = Router
