@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const bookingSchema = new mongoose.Schema({
 	userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-	workspaceId: {
+	workspace: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Workspace',
 		required: true
