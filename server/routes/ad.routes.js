@@ -4,7 +4,6 @@ const adController = require('../controllers/ad.controller')
 const authMiddleware = require('../middlewares/auth.middleware')
 const isAdminMiddleware = require('../middlewares/isAdmin.middleware')
 
-// * Ad
 adRouter.post(
 	'/create',
 	authMiddleware,

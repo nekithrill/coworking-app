@@ -4,11 +4,25 @@ const newsController = require('../controllers/news.controller')
 const authMiddleware = require('../middlewares/auth.middleware')
 const isAdminMiddleware = require('../middlewares/isAdmin.middleware')
 
-// * News
-newsRouter.post('/create', newsController.createNews)
+newsRouter.post(
+	'/create',
+	authMiddleware,
+	isAdminMiddleware,
+	newsController.createNews
+)
 newsRouter.get('/all', newsController.getAllNews)
 newsRouter.get('/:newsId', newsController.getNewsById)
-newsRouter.put('/edit/:newsId', newsController.updateNewsById)
-newsRouter.delete('/delete/:newsId', newsController.deleteNewsById)
+newsRouter.put(
+	'/edit/:newsId',
+	authMiddleware,
+	isAdminMiddleware,
+	newsController.updateNewsById
+)
+newsRouter.delete(
+	'/delete/:newsId',
+	authMiddleware,
+	isAdminMiddleware,
+	newsController.deleteNewsById
+)
 
 module.exports = newsRouter
