@@ -4,6 +4,11 @@ const workspaceSchema = new mongoose.Schema({
 	name: { type: String, required: true },
 	capacity: { type: Number, required: true },
 	location: { type: String, required: true },
+	status: {
+		type: String,
+		enum: ['occupied', 'available'],
+		default: 'available'
+	},
 	type: {
 		type: String,
 		enum: ['Office', 'Co-Working', 'Meeting Room', 'Event Space'],
