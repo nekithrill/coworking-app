@@ -1,13 +1,11 @@
 const Booking = require('../models/booking.model')
-const { errorHandler } = require('../utils/errorHandler')
 
-// [@] Booking
 const createBooking = async (req, res) => {
 	try {
 		const newBooking = await Booking.create(req.body)
 		res.status(201).json(newBooking)
 	} catch (error) {
-		res.status(400).json({ message: error.message })
+		next(error)
 	}
 }
 
@@ -16,7 +14,7 @@ const getAllBookings = async (req, res) => {
 		const allBookings = await Booking.find()
 		res.status(200).json(allBookings)
 	} catch (error) {
-		res.status(400).json({ message: error.message })
+		next(error)
 	}
 }
 
@@ -24,7 +22,7 @@ const viewBookingHistory = async (req, res) => {
 	try {
 		// Логика просмотра истории бронирований
 	} catch (error) {
-		res.status(400).json({ message: error.message })
+		next(error)
 	}
 }
 
@@ -33,7 +31,7 @@ const getBookingById = async (req, res) => {
 		const booking = await Booking.findById(req.params.bookingId)
 		res.status(200).json(booking)
 	} catch (error) {
-		res.status(400).json({ message: error.message })
+		next(error)
 	}
 }
 
@@ -46,7 +44,7 @@ const updateBookingById = async (req, res) => {
 		)
 		res.status(200).json(updatedBooking)
 	} catch (error) {
-		res.status(400).json({ message: error.message })
+		next(error)
 	}
 }
 
@@ -55,7 +53,7 @@ const deleteBookingById = async (req, res) => {
 		await Booking.findByIdAndDelete(req.params.bookingId)
 		res.status(204).send()
 	} catch (error) {
-		res.status(400).json({ message: error.message })
+		next(error)
 	}
 }
 

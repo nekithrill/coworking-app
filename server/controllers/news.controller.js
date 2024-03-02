@@ -1,13 +1,11 @@
 const News = require('../models/news.model')
-const { errorHandler } = require('../utils/errorHandler')
 
-// [@] News
 const createNews = async (req, res) => {
 	try {
 		const newNews = await News.create(req.body)
 		res.status(201).json(newNews)
 	} catch (error) {
-		errorHandler(400, error, res)
+		next(error)
 	}
 }
 
@@ -16,7 +14,7 @@ const getAllNews = async (req, res) => {
 		const allNews = await News.find()
 		res.status(200).json(allNews)
 	} catch (error) {
-		errorHandler(400, error, res)
+		next(error)
 	}
 }
 
@@ -24,11 +22,11 @@ const getNewsById = async (req, res) => {
 	try {
 		const news = await News.findById(req.params.newsId)
 		if (!news) {
-			return errorHandler(404, error, res)
+			return res.status(404).json({ error: 'News not found' })
 		}
 		res.status(200).json(news)
 	} catch (error) {
-		errorHandler(400, error, res)
+		next(error)
 	}
 }
 
@@ -40,11 +38,11 @@ const updateNewsById = async (req, res) => {
 			{ new: true }
 		)
 		if (!updatedNews) {
-			return errorHandler(404, error, res)
+			return res.status(404).json({ error: 'News not found' })
 		}
 		res.status(200).json(updatedNews)
 	} catch (error) {
-		errorHandler(400, error, res)
+		next(error)
 	}
 }
 
@@ -53,7 +51,7 @@ const deleteNewsById = async (req, res) => {
 		await News.findByIdAndDelete(req.params.newsId)
 		res.status(204).send()
 	} catch (error) {
-		errorHandler(400, error, res)
+		next(error)
 	}
 }
 
