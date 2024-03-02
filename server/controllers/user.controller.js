@@ -1,64 +1,87 @@
 const User = require('../models/user.model')
 const bcrypt = require('bcrypt')
-const generateToken = require('../utils/generateToken')
-const { errorHandler } = require('../utils/errorHandler')
+const userService = require('../services/user-service')
+const generateToken = require('../services/token-service')
 
-// [@] User
-const registerUser = async (req, res) => {
-	try {
-		const { password, ...userData } = req.body
-		const hashedPassword = await bcrypt.hash(password, 10)
-
-		const newUser = await User.create({ ...userData, password: hashedPassword })
-
-		res.status(201).json(newUser)
-	} catch (error) {
-		errorHandler(400, error, res)
-	}
-}
-
-const loginUser = async (req, res) => {
+const registerUser = async (req, res, next) => {
 	try {
 		const { email, password } = req.body
-		const user = await User.findOne({ email })
-		if (!user) {
-			return errorHandler(401, 'Invalid credentials', res)
-		}
-
-		const isPasswordValid = await bcrypt.compare(password, user.password)
-		if (!isPasswordValid) {
-			return errorHandler(401, 'Invalid credentials', res)
-		}
-
-		const tokenInfo = generateToken(user._id)
-		res.status(200).json(tokenInfo)
+		const userData = await userService.registration(email, password)
+		res.cookie('refreshToken', userData.refreshToken, {
+			maxAge: 30, // ! INCREASE
+			httpOnly: true
+		})
+		return res.json(userData)
 	} catch (error) {
-		return errorHandler(500, error, res)
+		next(error)
 	}
 }
 
-const getAllUsers = async (req, res) => {
+const loginUser = async (req, res, next) => {
+	try {
+		const { email, password } = req.body
+		const userData = await userService.login(email, password)
+		res.cookie('refreshToken', userData.refreshToken, { maxAge: 30, httpOnly })
+		return res.json(userData)
+	} catch (error) {
+		next(error)
+	}
+}
+
+const logoutUser = async (req, res, next) => {
+	try {
+		const { refreshToken } = req.cookies
+		const token = await userService.logout(refreshToken)
+		res.clearCookie('refreshToken')
+		return res.json(token)
+	} catch (error) {
+		next(error)
+	}
+}
+
+const activateUser = async (req, res, next) => {
+	try {
+		const activationLink = req.params.link
+		await userService.activate(activationLink)
+		return res.redirect(process.env.CLIENT_URL)
+	} catch (error) {
+		next(error)
+	}
+}
+
+const refreshUser = async (req, res, next) => {
+	try {
+		const { refreshToken } = req.cookies
+		const userData = await userService.refresh(refreshToken)
+		res.cookie('refreshToken', userData.refreshToken, { maxAge: 30, httpOnly })
+		return res.json(userData)
+	} catch (error) {
+		next(error)
+	}
+}
+
+const getAllUsers = async (req, res, next) => {
 	try {
 		const allUsers = await User.find()
 		res.status(200).json(allUsers)
 	} catch (error) {
-		errorHandler(400, error, res)
+		next(error)
 	}
 }
 
-const getUserById = async (req, res) => {
+const getUserById = async (req, res, next) => {
 	try {
 		const user = await User.findById(req.params.userId)
 		if (!user) {
-			return errorHandler(404, error, res)
+			return res.status(404).json({ error: 'User not found' })
 		}
 		res.status(200).json(user)
 	} catch (error) {
-		errorHandler(500, error, res)
+		next(error)
 	}
 }
 
-const updateUserById = async (req, res) => {
+const updateUserById = async (req, res, next) => {
 	try {
 		const updatedUser = await User.findByIdAndUpdate(
 			req.params.userId,
@@ -66,29 +89,32 @@ const updateUserById = async (req, res) => {
 			{ new: true }
 		)
 		if (!updatedUser) {
-			return errorHandler(404, error, res)
+			return res.status(404).json({ error: 'User not found' })
 		}
 		res.status(200).json(updatedUser)
 	} catch (error) {
-		errorHandler(500, error, res)
+		next(error)
 	}
 }
 
-const deleteUserById = async (req, res) => {
+const deleteUserById = async (req, res, next) => {
 	try {
 		const deletedUser = await User.findByIdAndDelete(req.params.userId)
 		if (!deletedUser) {
-			return errorHandler(404, error, res)
+			return res.status(404).json({ error: 'User not found' })
 		}
 		res.status(200).json({ message: 'User deleted successfully' })
 	} catch (error) {
-		errorHandler(500, error, res)
+		next(error)
 	}
 }
 
 module.exports = {
 	registerUser,
 	loginUser,
+	logoutUser,
+	activateUser,
+	refreshUser,
 	getAllUsers,
 	getUserById,
 	updateUserById,
