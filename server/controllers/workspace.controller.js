@@ -1,13 +1,11 @@
 const Workspace = require('../models/workspace.model')
-const { errorHandler } = require('../utils/errorHandler')
 
-// [@] Workspace
 const createWorkspace = async (req, res) => {
 	try {
 		const newWorkspace = await Workspace.create(req.body)
 		res.status(201).json(newWorkspace)
 	} catch (error) {
-		errorHandler(400, error, res)
+		next(error)
 	}
 }
 
@@ -16,7 +14,7 @@ const getAllWorkspaces = async (req, res) => {
 		const allWorkspaces = await Workspace.find()
 		res.status(200).json(allWorkspaces)
 	} catch (error) {
-		errorHandler(400, error, res)
+		next(error)
 	}
 }
 
@@ -24,11 +22,11 @@ const getWorkspaceById = async (req, res) => {
 	try {
 		const workspace = await Workspace.findById(req.params.workspaceId)
 		if (!workspace) {
-			return errorHandler(404, error, res)
+			return res.status(404).json({ error: 'Workspace not found' })
 		}
 		res.status(200).json(workspace)
 	} catch (error) {
-		errorHandler(400, error, res)
+		next(error)
 	}
 }
 
@@ -40,11 +38,11 @@ const updateWorkspaceById = async (req, res) => {
 			{ new: true }
 		)
 		if (!updatedWorkspace) {
-			return errorHandler(404, error, res)
+			return res.status(404).json({ error: 'Workspace not found' })
 		}
 		res.status(200).json(updatedWorkspace)
 	} catch (error) {
-		errorHandler(400, error, res)
+		next(error)
 	}
 }
 
@@ -53,7 +51,7 @@ const deleteWorkspaceById = async (req, res) => {
 		await Workspace.findByIdAndDelete(req.params.workspaceId)
 		res.status(204).send()
 	} catch (error) {
-		errorHandler(400, error, res)
+		next(error)
 	}
 }
 
