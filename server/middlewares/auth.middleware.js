@@ -1,20 +1,29 @@
 const jwt = require('jsonwebtoken')
-const secretKey = process.env.JWT_ACCESS_SECRET || 'defaultSecretKey'
+const ApiError = require('../errors/api-error')
+const tokenService = require('../services/token-service')
 
 const authMiddleware = (req, res, next) => {
-	const token = req.headers.authorization
-
-	if (!token) {
-		return res.status(401).json({ message: 'Unauthorized' })
-	}
-
-	jwt.verify(token, secretKey, (err, decoded) => {
-		if (err) {
-			return res.status(401).json({ message: 'Invalid token' })
+	try {
+		const authorizationHeader = req.headers.authorization
+		if (!authorizationHeader) {
+			return next(ApiError.UnauthorizedError())
 		}
-		req.user = decoded
+
+		const accessToken = authorizationHeader.split(' ')[1]
+		if (!accessToken) {
+			return next(ApiError.UnauthorizedError())
+		}
+
+		const userData = tokenService.validateAccessToken(accessToken)
+		if (!userData) {
+			return next(ApiError.UnauthorizedError())
+		}
+
+		req.user = userData
 		next()
-	})
+	} catch (error) {
+		return next(ApiError.UnauthorizedError())
+	}
 }
 
 module.exports = authMiddleware
