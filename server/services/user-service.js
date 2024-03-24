@@ -10,7 +10,7 @@ class UserService {
 	async registration(email, password) {
 		const candidate = await UserModel.findOne({ email })
 		if (candidate) {
-			throw ApiError.badRequestError(
+			throw ApiError.BadRequestError(
 				`User with email - ${email} already exists.`
 			)
 		}
@@ -24,7 +24,7 @@ class UserService {
 		})
 		await mailService.sendActivationMail(
 			email,
-			`${process.env.API_URL}/api/activate/${activationLink}`
+			`${process.env.API_URL}/api/user/activate/${activationLink}`
 		)
 
 		const userDto = new UserDto(user)
@@ -40,14 +40,14 @@ class UserService {
 	async login(email, password) {
 		const user = await UserModel.findOne({ email })
 		if (!user) {
-			throw ApiError.badRequestError(`User with email - ${email} doesnt exist.`)
+			throw ApiError.BadRequestError(`User with email - ${email} doesnt exist.`)
 		}
 		const isPassEquals = await bcrypt.compare(password, user.password)
 		if (!isPassEquals) {
 			throw ApiError.badRequestError('Invalid password.')
 		}
 		const userDto = new UserDto(user)
-		const token = tokenService.generateToken({ ...userDto })
+		const tokens = tokenService.generateTokens({ ...userDto })
 
 		await tokenService.saveToken(userDto.id, tokens.refreshToken)
 
@@ -65,7 +65,7 @@ class UserService {
 	async activate(activationLink) {
 		const user = await UserModel.findOne({ activationLink })
 		if (!user) {
-			throw ApiError.badRequestError('Wrong activation link')
+			throw ApiError.BadRequestError('Wrong activation link')
 		}
 		user.isActivated = true
 		await user.save()
@@ -73,8 +73,19 @@ class UserService {
 
 	async refresh(refreshToken) {
 		if (!refreshToken) {
-			throw ApiError.unauthorizedError()
+			throw ApiError.UnauthorizedError()
 		}
+		const userData = tokenService.validateRefreshToken(refreshToken)
+		const tokenFromDb = await tokenService.findToken(refreshToken)
+		if (!userData || !tokenFromDb) {
+			throw ApiError.UnauthorizedError()
+		}
+		const user = await UserModel.findById(userData.id)
+		const userDto = new UserDto(user)
+		const tokens = tokenService.generateTokens({ ...userDto })
+
+		await tokenService.saveToken(userDto.id, tokens.refreshToken)
+		return { ...tokens, user: userDto }
 	}
 }
 
