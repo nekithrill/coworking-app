@@ -1,8 +1,18 @@
 const Booking = require('../models/booking.model')
+const Tariff = require('../models/tariff.model')
+const User = require('../models/user.model')
 
-const createBooking = async (req, res) => {
+const createBooking = async (req, res, next) => {
 	try {
-		const newBooking = await Booking.create(req.body)
+		const { userId, workspaceId, date, tariffId } = req.body
+		const selectedTariff = await Tariff.findById(tariffId)
+		const newBooking = await Booking.create({
+			userId,
+			workspace: workspaceId,
+			date,
+			tariff: selectedTariff._id
+		})
+
 		res.status(201).json(newBooking)
 	} catch (error) {
 		next(error)
@@ -18,9 +28,12 @@ const getAllBookings = async (req, res) => {
 	}
 }
 
-const viewBookingHistory = async (req, res) => {
+const viewBookingHistory = async (req, res, next) => {
 	try {
-		// Логика просмотра истории бронирований
+		const userId = req.user.id
+		const userBookings = await Booking.find({ userId })
+
+		res.status(200).json(userBookings)
 	} catch (error) {
 		next(error)
 	}
@@ -57,11 +70,34 @@ const deleteBookingById = async (req, res) => {
 	}
 }
 
+const cancelBooking = async (req, bookingId) => {
+	try {
+		const booking = await Booking.findById(bookingId)
+		if (!booking) {
+			throw new Error('Booking not found')
+		}
+
+		if (
+			booking.userId.toString() !== req.user._id.toString() &&
+			req.user.role !== 'admin'
+		) {
+			throw new Error('You have no permissions to cancel this booking')
+		}
+
+		await Booking.findByIdAndDelete(bookingId)
+
+		return { message: 'Booking cancelled successfully!' }
+	} catch (error) {
+		next(error)
+	}
+}
+
 module.exports = {
 	createBooking,
 	viewBookingHistory,
 	getAllBookings,
 	getBookingById,
 	updateBookingById,
-	deleteBookingById
+	deleteBookingById,
+	cancelBooking
 }
