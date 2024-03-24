@@ -4,10 +4,23 @@ const bookingController = require('../controllers/booking.controller')
 const authMiddleware = require('../middlewares/auth.middleware')
 const isAdminMiddleware = require('../middlewares/isAdmin.middleware')
 
-bookingRouter.post('/create', bookingController.createBooking)
-bookingRouter.get('/all', bookingController.getAllBookings)
-bookingRouter.get('/history', bookingController.viewBookingHistory)
-bookingRouter.get('/:bookingId', bookingController.getBookingById)
+bookingRouter.post('/create', authMiddleware, bookingController.createBooking)
+bookingRouter.get(
+	'/all',
+	authMiddleware,
+	isAdminMiddleware,
+	bookingController.getAllBookings
+)
+bookingRouter.get(
+	'/history',
+	authMiddleware,
+	bookingController.viewBookingHistory
+)
+bookingRouter.get(
+	'/:bookingId',
+	authMiddleware,
+	bookingController.getBookingById
+)
 bookingRouter.put(
 	'/edit/:bookingId',
 	authMiddleware,
@@ -19,6 +32,11 @@ bookingRouter.delete(
 	authMiddleware,
 	isAdminMiddleware,
 	bookingController.deleteBookingById
+)
+bookingRouter.delete(
+	'/cancel/:bookingId',
+	authMiddleware,
+	bookingController.cancelBooking
 )
 
 module.exports = bookingRouter
