@@ -92,20 +92,16 @@ class UserService {
 	}
 
 	async assignRole(userId, newRole) {
-		try {
-			const user = await UserModel.findById(userId)
+		const user = await UserModel.findById(userId)
 
-			if (!user) {
-				throw ApiError.NotFoundError('User not found')
-			}
-
-			user.role = newRole
-			await user.save()
-
-			return user
-		} catch (error) {
-			throw error
+		if (!user) {
+			throw ApiError.NotFoundError('User not found')
 		}
+
+		user.role = newRole
+		await user.save()
+
+		return user
 	}
 }
 
