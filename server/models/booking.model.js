@@ -7,7 +7,11 @@ const bookingSchema = new mongoose.Schema({
 		ref: 'Workspace',
 		required: true
 	},
-	date: { type: Date, required: true }
+	tariff: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Tariff',
+		required: true
+	}
 })
 
 const Booking = mongoose.model('Booking', bookingSchema)
