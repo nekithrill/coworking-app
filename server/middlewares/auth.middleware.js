@@ -26,4 +26,28 @@ const authMiddleware = (req, res, next) => {
 	}
 }
 
-module.exports = authMiddleware
+const checkAdminRole = (req, res, next) => {
+	if (req.user && req.user.role === 'admin') {
+		next()
+	} else {
+		return next(
+			ApiError.ForbiddenError(
+				'You must be an admin. You do not have permission to access this resource.'
+			)
+		)
+	}
+}
+
+const checkCreatorRole = (req, res, next) => {
+	if (req.user && req.user.role === 'creator') {
+		next()
+	} else {
+		return next(
+			ApiError.ForbiddenError(
+				'You must be a creator. You do not have permission to access this resource.'
+			)
+		)
+	}
+}
+
+module.exports = { authMiddleware, checkAdminRole, checkCreatorRole }
