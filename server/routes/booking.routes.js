@@ -1,38 +1,45 @@
 const express = require('express')
 const bookingRouter = express.Router()
 const bookingController = require('../controllers/booking.controller')
-const authMiddleware = require('../middlewares/auth.middleware')
-const isAdminMiddleware = require('../middlewares/isAdmin.middleware')
+const {
+	authMiddleware,
+	checkAdminRole
+} = require('../middlewares/auth.middleware')
 
 bookingRouter.post('/create', authMiddleware, bookingController.createBooking)
 bookingRouter.get(
 	'/all',
 	authMiddleware,
-	isAdminMiddleware,
+	checkAdminRole,
 	bookingController.getAllBookings
 )
+
 bookingRouter.get(
 	'/history',
 	authMiddleware,
 	bookingController.viewBookingHistory
 )
+
 bookingRouter.get(
 	'/:bookingId',
 	authMiddleware,
 	bookingController.getBookingById
 )
+
 bookingRouter.put(
 	'/edit/:bookingId',
 	authMiddleware,
-	isAdminMiddleware,
+	checkAdminRole,
 	bookingController.updateBookingById
 )
+
 bookingRouter.delete(
 	'/delete/:bookingId',
 	authMiddleware,
-	isAdminMiddleware,
+	checkAdminRole,
 	bookingController.deleteBookingById
 )
+
 bookingRouter.delete(
 	'/cancel/:bookingId',
 	authMiddleware,

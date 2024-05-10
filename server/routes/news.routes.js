@@ -1,27 +1,33 @@
 const express = require('express')
 const newsRouter = express.Router()
 const newsController = require('../controllers/news.controller')
-const authMiddleware = require('../middlewares/auth.middleware')
-const isAdminMiddleware = require('../middlewares/isAdmin.middleware')
+const {
+	authMiddleware,
+	checkAdminRole
+} = require('../middlewares/auth.middleware')
 
 newsRouter.post(
 	'/create',
 	authMiddleware,
-	isAdminMiddleware,
+	checkAdminRole,
 	newsController.createNews
 )
+
 newsRouter.get('/all', newsController.getAllNews)
+
 newsRouter.get('/:newsId', newsController.getNewsById)
+
 newsRouter.put(
 	'/edit/:newsId',
 	authMiddleware,
-	isAdminMiddleware,
+	checkAdminRole,
 	newsController.updateNewsById
 )
+
 newsRouter.delete(
 	'/delete/:newsId',
 	authMiddleware,
-	isAdminMiddleware,
+	checkAdminRole,
 	newsController.deleteNewsById
 )
 

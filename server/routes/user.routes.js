@@ -1,8 +1,11 @@
 const express = require('express')
 const userRouter = express.Router()
 const userController = require('../controllers/user.controller')
-const authMiddleware = require('../middlewares/auth.middleware')
-const isAdminMiddleware = require('../middlewares/isAdmin.middleware')
+const {
+	authMiddleware,
+	checkAdminRole,
+	checkCreatorRole
+} = require('../middlewares/auth.middleware')
 const { body } = require('express-validator')
 
 userRouter.post(
@@ -11,36 +14,50 @@ userRouter.post(
 	body('password').isLength({ min: 4, max: 30 }),
 	userController.registerUser
 )
+
 userRouter.post('/login', userController.loginUser)
+
 userRouter.post('/logout', authMiddleware, userController.logoutUser)
+
 userRouter.get(
 	'/activate/:activationLink',
 	authMiddleware,
 	userController.activateUser
 )
+
 userRouter.get(
 	'/all',
 	authMiddleware,
-	isAdminMiddleware,
+	checkAdminRole,
 	userController.getAllUsers
 )
+
 userRouter.get(
 	'/:userId',
 	authMiddleware,
-	isAdminMiddleware,
+	checkAdminRole,
 	userController.getUserById
 )
+
 userRouter.put(
 	'/edit/:userId',
 	authMiddleware,
-	isAdminMiddleware,
+	checkAdminRole,
 	userController.updateUserById
 )
+
 userRouter.delete(
 	'/delete/:userId',
 	authMiddleware,
-	isAdminMiddleware,
+	checkAdminRole,
 	userController.deleteUserById
+)
+
+userRouter.put(
+	'/role/:userId/:role',
+	authMiddleware,
+	checkCreatorRole,
+	userController.assignRoleUserById
 )
 
 module.exports = userRouter
