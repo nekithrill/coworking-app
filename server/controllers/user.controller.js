@@ -60,7 +60,10 @@ const refreshUser = async (req, res, next) => {
 	try {
 		const { refreshToken } = req.cookies
 		const userData = await userService.refresh(refreshToken)
-		res.cookie('refreshToken', userData.refreshToken, { maxAge: 30, httpOnly })
+		res.cookie('refreshToken', userData.refreshToken, {
+			maxAge: 30,
+			httpOnly: true
+		})
 		return res.json(userData)
 	} catch (error) {
 		next(error)
@@ -116,6 +119,24 @@ const deleteUserById = async (req, res, next) => {
 	}
 }
 
+const assignRoleUserById = async (req, res, next) => {
+	try {
+		if (req.user.role !== 'creator') {
+			return res
+				.status(403)
+				.json({ error: 'You must be a creator. No permission' })
+		}
+
+		const userId = req.params.userId
+		const newRole = req.params.role
+
+		const result = await userService.assignRole(userId, newRole)
+		res.json(result)
+	} catch (error) {
+		next(error)
+	}
+}
+
 module.exports = {
 	registerUser,
 	loginUser,
@@ -125,5 +146,6 @@ module.exports = {
 	getAllUsers,
 	getUserById,
 	updateUserById,
-	deleteUserById
+	deleteUserById,
+	assignRoleUserById
 }
