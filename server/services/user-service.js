@@ -14,12 +14,15 @@ class UserService {
 				`User with email - ${email} already exists.`
 			)
 		}
+
+		const role = 'user'
 		const hashPassword = await bcrypt.hash(password, 3)
 		const activationLink = uuid.v4()
 
 		const user = await UserModel.create({
 			email,
 			password: hashPassword,
+			role,
 			activationLink
 		})
 		await mailService.sendActivationMail(
@@ -86,6 +89,23 @@ class UserService {
 
 		await tokenService.saveToken(userDto.id, tokens.refreshToken)
 		return { ...tokens, user: userDto }
+	}
+
+	async assignRole(userId, newRole) {
+		try {
+			const user = await UserModel.findById(userId)
+
+			if (!user) {
+				throw ApiError.NotFoundError('User not found')
+			}
+
+			user.role = newRole
+			await user.save()
+
+			return user
+		} catch (error) {
+			throw error
+		}
 	}
 }
 
