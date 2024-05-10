@@ -13,7 +13,7 @@ module.exports = class ApiError extends Error {
 	}
 
 	static UnauthorizedError() {
-		return new ApiError(401, 'Authentication error')
+		return new ApiError(401, 'Authentication error.')
 	}
 
 	static ForbiddenError(message, errors = []) {
