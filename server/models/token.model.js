@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const tokenSchema = new mongoose.Schema({
-	user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+	userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 	refreshToken: { type: String, required: true }
 })
 
