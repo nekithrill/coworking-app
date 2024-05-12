@@ -1,6 +1,7 @@
 const Workspace = require('../models/workspace.model')
+const ApiError = require('../errors/api-error')
 
-const createWorkspace = async (req, res) => {
+const createWorkspace = async (req, res, next) => {
 	try {
 		const newWorkspace = await Workspace.create(req.body)
 		res.status(201).json(newWorkspace)
@@ -9,7 +10,7 @@ const createWorkspace = async (req, res) => {
 	}
 }
 
-const getAllWorkspaces = async (req, res) => {
+const getAllWorkspaces = async (req, res, next) => {
 	try {
 		const allWorkspaces = await Workspace.find()
 		res.status(200).json(allWorkspaces)
@@ -18,11 +19,11 @@ const getAllWorkspaces = async (req, res) => {
 	}
 }
 
-const getWorkspaceById = async (req, res) => {
+const getWorkspaceById = async (req, res, next) => {
 	try {
 		const workspace = await Workspace.findById(req.params.workspaceId)
 		if (!workspace) {
-			return res.status(404).json({ error: 'Workspace not found' })
+			throw ApiError.NotFoundError('Workspace not found.')
 		}
 		res.status(200).json(workspace)
 	} catch (error) {
@@ -30,7 +31,7 @@ const getWorkspaceById = async (req, res) => {
 	}
 }
 
-const updateWorkspaceById = async (req, res) => {
+const updateWorkspaceById = async (req, res, next) => {
 	try {
 		const updatedWorkspace = await Workspace.findByIdAndUpdate(
 			req.params.workspaceId,
@@ -38,7 +39,7 @@ const updateWorkspaceById = async (req, res) => {
 			{ new: true }
 		)
 		if (!updatedWorkspace) {
-			return res.status(404).json({ error: 'Workspace not found' })
+			throw ApiError.NotFoundError('Workspace not found.')
 		}
 		res.status(200).json(updatedWorkspace)
 	} catch (error) {
@@ -46,10 +47,14 @@ const updateWorkspaceById = async (req, res) => {
 	}
 }
 
-const deleteWorkspaceById = async (req, res) => {
+const deleteWorkspaceById = async (req, res, next) => {
 	try {
-		await Workspace.findByIdAndDelete(req.params.workspaceId)
-		res.status(204).send()
+		const { workspaceId } = req.params
+		const deletedWorkspace = await Workspace.findByIdAndDelete(workspaceId)
+		if (!deletedWorkspace) {
+			throw ApiError.NotFoundError('Workspace not found.')
+		}
+		res.status(200).json({ message: 'Workspace deleted successfully!' })
 	} catch (error) {
 		next(error)
 	}

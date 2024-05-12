@@ -1,6 +1,7 @@
 const Tariff = require('../models/tariff.model')
+const ApiError = require('../errors/api-error')
 
-const createTariff = async (req, res) => {
+const createTariff = async (req, res, next) => {
 	try {
 		const newTariff = await Tariff.create(req.body)
 		res.status(201).json(newTariff)
@@ -9,7 +10,7 @@ const createTariff = async (req, res) => {
 	}
 }
 
-const getAllTariffs = async (req, res) => {
+const getAllTariffs = async (req, res, next) => {
 	try {
 		const allTariffs = await Tariff.find()
 		res.status(200).json(allTariffs)
@@ -18,11 +19,11 @@ const getAllTariffs = async (req, res) => {
 	}
 }
 
-const getTariffById = async (req, res) => {
+const getTariffById = async (req, res, next) => {
 	try {
 		const tariff = await Tariff.findById(req.params.tariffId)
 		if (!tariff) {
-			return res.status(404).json({ error: 'Tariff not found' })
+			throw ApiError.NotFoundError('Tariff not found.')
 		}
 		res.status(200).json(tariff)
 	} catch (error) {
@@ -30,14 +31,14 @@ const getTariffById = async (req, res) => {
 	}
 }
 
-const updateTariffById = async (req, res) => {
+const updateTariffById = async (req, res, next) => {
 	try {
 		const { tariffId } = req.params
 		const updatedTariff = await Tariff.findByIdAndUpdate(tariffId, req.body, {
 			new: true
 		})
 		if (!updatedTariff) {
-			return res.status(404).json({ error: 'Tariff not found' })
+			throw ApiError.NotFoundError('Tariff not found.')
 		}
 		res.status(200).json(updatedTariff)
 	} catch (error) {
@@ -45,12 +46,12 @@ const updateTariffById = async (req, res) => {
 	}
 }
 
-const deleteTariffById = async (req, res) => {
+const deleteTariffById = async (req, res, next) => {
 	try {
-		const { id } = req.params
-		const deletedTariff = await Tariff.findByIdAndDelete(id)
+		const { tariffId } = req.params
+		const deletedTariff = await Tariff.findByIdAndDelete(tariffId)
 		if (!deletedTariff) {
-			return res.status(404).json({ error: 'Tariff not found' })
+			throw ApiError.NotFoundError('Tariff not found.')
 		}
 		res.status(200).json({ message: 'Tariff deleted successfully!' })
 	} catch (error) {
