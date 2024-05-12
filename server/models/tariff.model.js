@@ -20,12 +20,10 @@ const tariffSchema = new mongoose.Schema({
 		required: true
 	},
 	services: [String],
-	isActive: {
+	available: {
 		type: Boolean,
 		default: true
-	},
-	startDate: Date,
-	endDate: Date
+	}
 })
 
 const Tariff = mongoose.model('Tariff', tariffSchema)
