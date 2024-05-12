@@ -7,6 +7,7 @@ const {
 } = require('../middlewares/auth.middleware')
 
 bookingRouter.post('/create', authMiddleware, bookingController.createBooking)
+
 bookingRouter.get(
 	'/all',
 	authMiddleware,
@@ -33,17 +34,17 @@ bookingRouter.put(
 	bookingController.updateBookingById
 )
 
+bookingRouter.put(
+	'/cancel/:bookingId',
+	authMiddleware,
+	bookingController.cancelBooking
+)
+
 bookingRouter.delete(
 	'/delete/:bookingId',
 	authMiddleware,
 	checkAdminRole,
 	bookingController.deleteBookingById
-)
-
-bookingRouter.delete(
-	'/cancel/:bookingId',
-	authMiddleware,
-	bookingController.cancelBooking
 )
 
 module.exports = bookingRouter
