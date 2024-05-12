@@ -1,6 +1,7 @@
 const News = require('../models/news.model')
+const ApiError = require('../errors/api-error')
 
-const createNews = async (req, res) => {
+const createNews = async (req, res, next) => {
 	try {
 		const newNews = await News.create(req.body)
 		res.status(201).json(newNews)
@@ -9,7 +10,7 @@ const createNews = async (req, res) => {
 	}
 }
 
-const getAllNews = async (req, res) => {
+const getAllNews = async (req, res, next) => {
 	try {
 		const allNews = await News.find()
 		res.status(200).json(allNews)
@@ -18,11 +19,11 @@ const getAllNews = async (req, res) => {
 	}
 }
 
-const getNewsById = async (req, res) => {
+const getNewsById = async (req, res, next) => {
 	try {
 		const news = await News.findById(req.params.newsId)
 		if (!news) {
-			return res.status(404).json({ error: 'News not found' })
+			throw ApiError.NotFoundError('News not found.')
 		}
 		res.status(200).json(news)
 	} catch (error) {
@@ -30,7 +31,7 @@ const getNewsById = async (req, res) => {
 	}
 }
 
-const updateNewsById = async (req, res) => {
+const updateNewsById = async (req, res, next) => {
 	try {
 		const updatedNews = await News.findByIdAndUpdate(
 			req.params.newsId,
@@ -38,7 +39,7 @@ const updateNewsById = async (req, res) => {
 			{ new: true }
 		)
 		if (!updatedNews) {
-			return res.status(404).json({ error: 'News not found' })
+			throw ApiError.NotFoundError('News not found.')
 		}
 		res.status(200).json(updatedNews)
 	} catch (error) {
@@ -46,7 +47,7 @@ const updateNewsById = async (req, res) => {
 	}
 }
 
-const deleteNewsById = async (req, res) => {
+const deleteNewsById = async (req, res, next) => {
 	try {
 		await News.findByIdAndDelete(req.params.newsId)
 		res.status(204).send()
