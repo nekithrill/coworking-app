@@ -5,7 +5,13 @@ const userSchema = new mongoose.Schema({
 	password: { type: String, required: true },
 	role: { type: String, enum: ['user', 'admin', 'creator'], default: 'user' },
 	isActivated: { type: Boolean, default: false },
-	activationLink: { type: String }
+	activationLink: { type: String },
+	firstName: { type: String },
+	lastName: { type: String },
+	gender: { type: String, enum: ['male', 'female', 'other'] },
+	dateOfBirth: { type: Date },
+	phoneNumber: { type: String },
+	profilePicture: { type: String }
 })
 
 const User = mongoose.model('User', userSchema)
