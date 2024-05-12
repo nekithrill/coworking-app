@@ -7,7 +7,7 @@ const registerUser = async (req, res, next) => {
 	try {
 		const errors = validationResult(req)
 		if (!errors.isEmpty()) {
-			return next(ApiError.BadRequestError('Validation error', errors.array()))
+			throw ApiError.BadRequestError('Validation error', errors.array())
 		}
 		const { email, password } = req.body
 		const userData = await userService.registration(email, password)
@@ -83,7 +83,7 @@ const getUserById = async (req, res, next) => {
 	try {
 		const user = await User.findById(req.params.userId)
 		if (!user) {
-			return res.status(404).json({ error: 'User not found' })
+			throw ApiError.NotFoundError('User not found.')
 		}
 		res.status(200).json(user)
 	} catch (error) {
@@ -91,20 +91,35 @@ const getUserById = async (req, res, next) => {
 	}
 }
 
-// FIX: Нужно дописать логику обновления юзера, а именно:
-// ! Изменить модель пользователя (добавить поля для изменения, например, имя)
-// ! Ограничить изменение некоторых полей (роль, ссылка активации, ...)
-// ? Возможно, имеет смысл оставить изменение роли, но в таком случае нужно ограничивать доступ
 const updateUserById = async (req, res, next) => {
 	try {
-		const updatedUser = await User.findByIdAndUpdate(
-			req.params.userId,
-			req.body,
-			{ new: true }
+		const userId = req.params.userId
+		const updateFields = req.body
+
+		const allowedFields = [
+			'firstName',
+			'lastName',
+			'gender',
+			'dateOfBirth',
+			'phoneNumber',
+			'profilePicture'
+		]
+
+		const isValidOperation = Object.keys(updateFields).every(field =>
+			allowedFields.includes(field)
 		)
-		if (!updatedUser) {
-			return res.status(404).json({ error: 'User not found' })
+		if (!isValidOperation) {
+			throw ApiError.BadRequestError('Invalid fields to update.')
 		}
+
+		const updatedUser = await User.findByIdAndUpdate(userId, updateFields, {
+			new: true
+		})
+
+		if (!updatedUser) {
+			throw ApiError.NotFoundError('User not found.')
+		}
+
 		res.status(200).json(updatedUser)
 	} catch (error) {
 		next(error)
@@ -115,9 +130,9 @@ const deleteUserById = async (req, res, next) => {
 	try {
 		const deletedUser = await User.findByIdAndDelete(req.params.userId)
 		if (!deletedUser) {
-			return res.status(404).json({ error: 'User not found' })
+			throw ApiError.NotFoundError('User not found.')
 		}
-		res.status(200).json({ message: 'User deleted successfully' })
+		res.status(200).json({ message: 'User deleted successfully.' })
 	} catch (error) {
 		next(error)
 	}
@@ -126,9 +141,7 @@ const deleteUserById = async (req, res, next) => {
 const assignRoleUserById = async (req, res, next) => {
 	try {
 		if (req.user.role !== 'creator') {
-			return res
-				.status(403)
-				.json({ error: 'You must be a creator. No permission' })
+			throw ApiError.ForbiddenError('You must be a creator. No permission.')
 		}
 
 		const userId = req.params.userId
