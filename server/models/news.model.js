@@ -8,6 +8,11 @@ const newsSchema = new mongoose.Schema({
 	updatedAt: { type: Date }
 })
 
+newsSchema.pre('findOneAndUpdate', function (next) {
+	this.set({ updatedAt: new Date() })
+	next()
+})
+
 const News = mongoose.model('News', newsSchema)
 
 module.exports = News
