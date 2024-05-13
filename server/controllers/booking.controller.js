@@ -28,15 +28,13 @@ const createBooking = async (req, res, next) => {
 		const startDate = new Date()
 		const endDate = calculateEndDate(startDate, tariff.duration)
 		const totalPrice = tariff.price * workspace.coefficient
-		const workspaceName = workspace.name
-		const tariffName = tariff.name
+		const workspaceData = workspace
+		const tariffData = tariff
 
 		const newBooking = await Booking.create({
 			userId,
-			workspaceId,
-			tariffId,
-			workspaceName,
-			tariffName,
+			workspaceData,
+			tariffData,
 			totalPrice,
 			startDate,
 			endDate
@@ -100,8 +98,9 @@ const deleteBookingById = async (req, res, next) => {
 			throw ApiError.NotFoundError('Booking not found.')
 		}
 
-		const { workspaceId } = deletedBooking
-		await Workspace.findByIdAndUpdate(workspaceId, { status: 'available' })
+		await Workspace.findByIdAndUpdate(deletedBooking.workspaceData._id, {
+			status: 'available'
+		})
 
 		res.status(200).json({ message: 'Booking deleted successfully!' })
 	} catch (error) {
@@ -136,8 +135,9 @@ const cancelBooking = async (req, res, next) => {
 			throw ApiError.NotFoundError('Booking not found.')
 		}
 
-		const { workspaceId } = updatedBooking
-		await Workspace.findByIdAndUpdate(workspaceId, { status: 'available' })
+		await Workspace.findByIdAndUpdate(booking.workspaceData._id, {
+			status: 'available'
+		})
 
 		res.status(200).json({
 			message: 'Booking cancelled successfully!',
