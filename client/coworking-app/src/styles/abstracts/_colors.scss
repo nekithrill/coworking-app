@@ -1,0 +1,163 @@
+:root {
+	.light-theme {
+		--clr-primary-100: hsl(210, 17%, 98%);
+		--clr-primary-200: hsl(210, 14%, 89%);
+		--clr-primary-300: hsl(210, 14%, 83%);
+		--clr-primary-400: hsl(210, 11%, 71%);
+		--clr-primary-500: hsl(208, 7%, 46%);
+		--clr-primary-600: hsl(210, 9%, 31%);
+		--clr-primary-700: hsl(210, 10%, 23%);
+		--clr-primary-800: hsl(210, 11%, 15%);
+
+		--clr-secondary-100: hsl(198, 77%, 95%);
+		--clr-secondary-200: hsl(200, 80%, 90%);
+		--clr-secondary-300: hsl(200, 80%, 84%);
+		--clr-secondary-400: hsl(200, 63%, 72%);
+		--clr-secondary-500: hsl(200, 46%, 38%);
+		--clr-secondary-600: hsl(200, 47%, 24%);
+		--clr-secondary-700: hsl(200, 42%, 15%);
+		--clr-secondary-800: hsl(200, 42%, 12%);
+
+		// Menu item colors
+		--clr-menu-item-bg: hsla(200, 63%, 72%, 0.8);
+		--clr-menu-item-outline: var(--clr-secondary-600);
+		--clr-menu-item-text: var(--clr-secondary-600);
+		--clr-menu-icon: var(--clr-secondary-600);
+
+		--clr-socials-shape: hsla(133, 90%, 70%, 0.7);
+		--clr-close-shape: hsla(8, 90%, 70%, 0.7);
+		--clr-settings-shape: hsla(48, 90%, 70%, 0.7);
+		--clr-projects-shape: hsla(219, 90%, 73%, 0.7);
+
+		--clr-socials-darker: hsl(132, 40%, 25%);
+		--clr-close-darker: hsl(8, 51%, 25%);
+		--clr-settings-darker: hsl(48, 100%, 25%);
+		--clr-projects-darker: hsl(239, 35%, 30%);
+
+		--clr-socials-shadow: 0px 0px 1.5rem 0.5rem hsla(132, 40%, 25%, 0.7);
+		--clr-close-shadow: 0px 0px 1.5rem 0.5rem hsla(8, 51%, 25%, 0.7);
+		--clr-settings-shadow: 0px 0px 1.5rem 0.5rem hsla(48, 100%, 25%, 0.7);
+		--clr-projects-shadow: 0px 0px 1.5rem 0.5rem hsla(239, 35%, 30%, 0.7);
+
+		// Section
+		--clr-section-bg: hsla(210, 14%, 89%, 0.8);
+
+		// Animation
+		--clr-pulse-shadow: hsla(0, 0%, 19%, 0.76);
+	}
+
+	.dark-theme {
+		--clr-primary-100: hsl(210, 11%, 15%);
+		--clr-primary-200: hsl(210, 10%, 23%);
+		--clr-primary-300: hsl(210, 9%, 31%);
+		--clr-primary-400: hsl(208, 7%, 46%);
+		--clr-primary-500: hsl(210, 11%, 71%);
+		--clr-primary-600: hsl(210, 14%, 83%);
+		--clr-primary-700: hsl(210, 14%, 89%);
+		--clr-primary-800: hsl(210, 17%, 98%);
+
+		--clr-secondary-100: hsl(200, 42%, 12%);
+		--clr-secondary-200: hsl(200, 42%, 15%);
+		--clr-secondary-300: hsl(200, 47%, 24%);
+		--clr-secondary-400: hsl(200, 46%, 38%);
+		--clr-secondary-500: hsl(200, 63%, 72%);
+		--clr-secondary-600: hsl(200, 80%, 84%);
+		--clr-secondary-700: hsl(200, 80%, 90%);
+		--clr-secondary-800: hsl(198, 77%, 95%);
+
+		// Menu item colors
+		--clr-menu-item-bg: hsla(200, 47%, 24%, 0.9);
+		--clr-menu-item-outline: var(--clr-secondary-500);
+		--clr-menu-item-text: var(--clr-secondary-500);
+		--clr-menu-icon: var(--clr-secondary-500);
+
+		--clr-projects-shape: hsla(239, 35%, 30%, 0.7);
+		--clr-socials-shape: hsla(132, 40%, 25%, 0.7);
+		--clr-close-shape: hsla(8, 51%, 25%, 0.7);
+		--clr-settings-shape: hsla(48, 100%, 25%, 0.7);
+
+		--clr-socials-darker: hsl(133, 90%, 70%);
+		--clr-close-darker: hsl(8, 90%, 70%);
+		--clr-settings-darker: hsl(48, 90%, 70%);
+		--clr-projects-darker: hsl(219, 90%, 73%);
+
+		--clr-socials-shadow: 0px 0px 1.5rem 0.5rem hsla(133, 90%, 70%, 0.8);
+		--clr-close-shadow: 0px 0px 1.5rem 0.5rem hsla(8, 90%, 70%, 0.8);
+		--clr-settings-shadow: 0px 0px 1.5rem 0.5rem hsla(48, 90%, 70%, 0.8);
+		--clr-projects-shadow: 0px 0px 1.5rem 0.5rem hsla(219, 90%, 73%, 0.8);
+
+		// Section
+		--clr-section-bg: hsla(210, 10%, 23%, 0.8);
+
+		// Animation
+		--clr-pulse-shadow: hsla(0, 0%, 80%, 0.76);
+	}
+
+	// General colors
+	--clr-primary-heading: var(--clr-primary-700);
+	--clr-primary-text: var(--clr-primary-600);
+	--clr-primary-bg: var(--clr-primary-200);
+	--clr-secondary-heading: var(--clr-secondary-500);
+	--clr-secondary-text: var(--clr-secondary-400);
+	--clr-secondary-bg: var(--clr-secondary-100);
+
+	--clr-policy-text: var(--clr-primary-700);
+	--clr-policy-text-hover: var(--clr-primary-100);
+
+	// Navbar colors
+	--clr-navbar-bg: var(--clr-secondary-300);
+	--clr-navbar-outline: var(--clr-secondary-500);
+	--clr-navbar-icon: var(--clr-navbar-outline);
+	--clr-navbar-active-item: #fff;
+
+	// Digital clock
+	--clr-clock-bg: var(--clr-secondary-300);
+	--clr-clock-text: var(--clr-secondary-500);
+	--clr-clock-outline: var(--clr-secondary-500);
+
+	// Section
+	--clr-section-heading: var(--clr-secondary-500);
+
+	// Modal window colors
+	--settings-modal-bg: rgba(0, 0, 0, 0.7);
+	--settings-modal-shadow: rgba(0, 0, 0, 0.3);
+
+	--clr-modal-bg: var(--clr-secondary-400);
+	--clr-modal-text: var(--clr-secondary-600);
+	--clr-modal-heading: var(--clr-secondary-700);
+	--clr-modal-button-bg: var(--clr-secondary-500);
+	--clr-modal-button-text: var(--clr-secondary-100);
+	--clr-modal-button-bg-hover: var(--clr-secondary-100);
+	--clr-modal-button-text-hover: var(--clr-secondary-700);
+
+	--clr-select-bg: var(--clr-secondary-300);
+	--clr-select-text: var(--clr-secondary-700);
+	--clr-select-outline: var(--clr-select-text);
+
+	// Card & card's items
+	--clr-card-bg: var(--clr-secondary-300);
+	--clr-card-text: var(--clr-secondary-600);
+	--clr-card-border: var(--clr-secondary-500);
+	--clr-card-shadow: var(--clr-secondary-500);
+	--clr-card-button-bg: var(--clr-secondary-400);
+	--clr-card-button-text: var(--clr-primary-50);
+	--clr-card-button-border: var(--clr-secondary-500);
+	--clr-card-button-bg-hover: var(--clr-secondary-100);
+	--clr-card-button-text-hover: var(--clr-secondary-700);
+	--clr-progressbar-line: linear-gradient(
+			var(--clr-primary-200),
+			transparent 85%
+		),
+		linear-gradient(90deg, var(--clr-primary-300), var(--clr-secondary-300));
+	--clr-progressbar-bg: linear-gradient(
+		var(--clr-secondary-500),
+		var(--clr-secondary-600)
+	);
+	--clr-progressbar-border: var(--clr-secondary-500);
+	--clr-progressbar-text: var(--clr-secondary-500);
+
+	// Data-title attribute
+	--clr-attr-border: var(--clr-primary-text);
+	--clr-attr-text: var(--clr-primary-text);
+	--clr-attr-bg: var(--clr-primary-400);
+}
