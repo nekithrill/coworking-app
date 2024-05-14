@@ -1,5 +1,5 @@
 // NOTE: Media queries
-// ? USAGE: @include -size- {css props}
+// * USAGE: @include -size- {css props}
 $breakpoints: (
 	'xxs': 0,
 	'xs': 360px,
@@ -16,36 +16,43 @@ $breakpoints: (
 		@content;
 	}
 }
+
 @mixin xs {
 	@media (min-width: map-get($breakpoints, 'xs')) {
 		@content;
 	}
 }
+
 @mixin sm {
 	@media (min-width: map-get($breakpoints, 'sm')) {
 		@content;
 	}
 }
+
 @mixin md {
 	@media (min-width: map-get($breakpoints, 'md')) {
 		@content;
 	}
 }
+
 @mixin lg {
 	@media (min-width: map-get($breakpoints, 'lg')) {
 		@content;
 	}
 }
+
 @mixin xl {
 	@media (min-width: map-get($breakpoints, 'xl')) {
 		@content;
 	}
 }
+
 @mixin xl2 {
 	@media (min-width: map-get($breakpoints, 'xl2')) {
 		@content;
 	}
 }
+
 @mixin xl3 {
 	@media (min-width: map-get($breakpoints, 'xl3')) {
 		@content;
