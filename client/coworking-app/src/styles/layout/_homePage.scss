@@ -1,0 +1,25 @@
+.home {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 5rem;
+
+	margin: 10rem 0 10rem var(--sidebar-width);
+
+	&__hero {
+		width: 40%;
+		text-align: justify;
+
+		& > p {
+			margin-top: 1rem;
+		}
+	}
+
+	& > button {
+		width: 15rem;
+		height: 3rem;
+
+		cursor: pointer;
+	}
+}
