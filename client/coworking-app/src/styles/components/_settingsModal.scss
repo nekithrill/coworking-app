@@ -1,0 +1,140 @@
+.settings-modal-overlay {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: var(--clr-modal-overlay);
+	z-index: 20;
+}
+
+.settings-modal {
+	position: absolute;
+	width: 25rem;
+	height: 33rem;
+	top: 50%;
+	left: 50%;
+	padding: 1.5rem;
+	border-radius: 0.4rem;
+	box-shadow: 0 0 1rem var(--settings-modal-shadow);
+	transform: translate(-50%, -50%);
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	background-color: var(--clr-modal-bg);
+	color: var(--clr-modal-text);
+
+	font-family: var(--ff-accent);
+	font-weight: var(--fw-medium);
+	font-size: var(--fs-h4);
+	z-index: 30;
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 2rem;
+
+		&_header {
+			display: flex;
+			justify-content: space-between;
+		}
+
+		&_theme,
+		&_language {
+			position: relative;
+
+			& > .icon {
+				position: absolute;
+				transform: translateY(-50%);
+				top: 75%;
+				left: 2%;
+				height: 2rem;
+				width: 2rem;
+			}
+
+			& > select {
+				width: 100%;
+				padding: 0.5rem 2rem 0.5rem 3rem;
+				margin-top: 1rem;
+
+				border: none;
+				border-radius: 0.2rem;
+				appearance: none;
+
+				color: var(--clr-select-text);
+				background-color: var(--clr-select-bg);
+				font-weight: var(--fw-medium);
+				font-size: var(--fs-select);
+
+				cursor: pointer;
+
+				&:focus {
+					outline: 0.2rem solid var(--clr-select-outline);
+				}
+			}
+		}
+		& > p {
+			text-transform: none;
+			margin: 1rem 0 1rem 0;
+		}
+	}
+
+	& #close-button {
+		background: none;
+		border: none;
+		cursor: pointer;
+		transition: transform 0.4s ease;
+
+		&:hover,
+		&:focus {
+			outline: none;
+			transform: rotate(360deg);
+		}
+
+		& > .icon,
+		& > svg {
+			width: 32px;
+			height: 32px;
+		}
+	}
+
+	& #save-button {
+		padding: 1rem 1.5rem;
+		margin-top: 1rem;
+		border: none;
+		border-radius: 0.4rem;
+
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		font-family: var(--ff-accent);
+		font-weight: var(--fw-bold);
+
+		color: var(--clr-modal-button-text);
+		background-color: var(--clr-modal-button-bg);
+		cursor: pointer;
+		transition: color 0.4s ease, background-color 0.4s ease;
+
+		&:hover {
+			background-color: var(--clr-modal-button-bg-hover);
+			color: var(--clr-modal-button-text-hover);
+		}
+
+		&:focus {
+			outline: 0.2rem solid var(--clr-modal-button-text);
+		}
+	}
+}
+
+.modal-open {
+	display: block;
+	animation: fadeIn 0.4s ease forwards;
+}
+
+.modal-closed {
+	display: none;
+	animation: fadeOut 0.4s ease forwards;
+}
