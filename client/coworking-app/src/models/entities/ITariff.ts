@@ -3,7 +3,7 @@ export interface ITariff {
 	name: string
 	description: string
 	price: number
-	duration: 'daily' | 'weekly' | 'monthly'
+	duration: 'day' | 'week' | 'month' | 'annual'
 	services?: string[]
 	available?: boolean
 }
