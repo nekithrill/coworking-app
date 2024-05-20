@@ -1,0 +1,75 @@
+.tariff-card {
+	--card-width: 20rem;
+	--card-height: 25rem;
+	width: var(--card-width);
+	height: var(--card-height);
+
+	margin-bottom: 1rem;
+	padding: 1.5rem;
+
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+	&:nth-child(1) {
+		background-color: var(--clr-tariff-daily);
+	}
+	&:nth-child(2) {
+		background-color: var(--clr-tariff-weekly);
+	}
+	&:nth-child(3) {
+		background-color: var(--clr-tariff-monthly);
+	}
+	&:nth-child(4) {
+		background-color: var(--clr-tariff-annual);
+	}
+
+	&__content {
+		width: 100%;
+		height: 100%;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
+		&_header {
+			& > h2 {
+				font-size: var(--fs-h2);
+				font-weight: var(--fw-medium);
+				margin-bottom: 1rem;
+			}
+
+			& > p {
+				font-size: 1.7rem;
+				font-weight: var(--fw-bold);
+				text-transform: uppercase;
+			}
+		}
+
+		&_price {
+			font-size: var(--fs-h2);
+			font-weight: var(--fw-bold);
+		}
+
+		&_services {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			& > ul {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-wrap: wrap;
+				gap: 0.5rem;
+
+				padding: 0;
+				list-style-type: none;
+				& > li {
+					padding: 0.5rem 1rem;
+					background-color: gold;
+					border-radius: 99rem;
+				}
+			}
+		}
+	}
+}
