@@ -1,3 +1,24 @@
 :root {
 	--index: calc(1vw + 1vh);
+
+	// Sidebar
+	--sidebar-width: calc(15 * var(--index));
+
+	// Modal window
+
+	// Home page
+
+	// News page
+	--news-tab-width: 8rem;
+	--news-tab-height: 3rem;
+
+	// Loocation page
+	--locations-tab-width: 11rem;
+	--locations-tab-height: 3rem;
+
+	// Tariffs page
+
+	// About page
+
+	// Contacts page
 }
