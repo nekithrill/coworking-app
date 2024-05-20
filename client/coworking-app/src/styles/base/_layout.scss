@@ -1,0 +1,11 @@
+.App {
+	min-height: 100vh;
+	width: 100%;
+
+	flex: 1;
+	display: flex;
+	flex-direction: row;
+
+	background-color: var(--clr-page-bg);
+	color: var(--clr-page-text);
+}
