@@ -19,7 +19,6 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: var(--ff-accent);
 	font-weight: var(--fw-bold);
 	text-transform: uppercase;
 }
@@ -49,12 +48,11 @@ h6 {
 }
 
 p {
-	font-family: var(--ff-primary);
 	font-weight: var(--fw-regular);
 	font-size: var(--fs-body);
 }
 
 a {
 	text-decoration: none;
-	color: black;
+	color: var(--clr-menu-item);
 }
