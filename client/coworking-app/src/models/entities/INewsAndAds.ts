@@ -1,4 +1,4 @@
-export interface INews {
+export interface INewsAndAds {
 	_id: string
 	title: string
 	content: string
