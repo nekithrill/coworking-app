@@ -1,0 +1,108 @@
+.contacts {
+	--contacts-padding: 2.5rem;
+	--contacts-gap: 3rem;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: justify;
+
+	margin: 10rem 0 10rem var(--sidebar-width);
+
+	&__header {
+		width: 40%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+
+		& > p {
+			margin-top: 1rem;
+		}
+	}
+
+	&__content {
+		width: 75%;
+		margin-top: 5rem;
+
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--contacts-gap);
+	}
+
+	&__info {
+		display: flex;
+		flex-direction: column;
+		flex: 1 1 40%;
+		gap: 2rem;
+
+		border-radius: 0.5rem;
+		padding: 2rem;
+
+		background-color: var(--clr-contacts-block-bg);
+
+		&-block {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			gap: 0.5rem;
+
+			& > h2 {
+				margin-bottom: 1rem;
+			}
+
+			&:nth-child(2) {
+				margin-top: 3rem;
+			}
+		}
+	}
+
+	&__form {
+		display: flex;
+		flex-direction: column;
+		flex: 1 1 20%;
+		gap: var(--contacts-gap);
+
+		border-radius: 0.5rem;
+		padding: 2rem;
+		box-sizing: border-box;
+		background-color: var(--clr-contacts-block-bg);
+
+		& > form {
+			display: flex;
+			flex-direction: column;
+			gap: 2rem;
+			& > button {
+				cursor: pointer;
+			}
+		}
+
+		&_group {
+			display: flex;
+			flex-direction: column;
+
+			& > label {
+				margin-bottom: 0.5rem;
+			}
+			& > input {
+				width: 100%;
+			}
+			& > textarea {
+				resize: vertical;
+				min-height: 6rem;
+				max-height: 20rem;
+			}
+		}
+	}
+
+	&__map {
+		flex: 1 1 100%;
+		padding: var(--contacts-padding);
+		border-radius: 0.5rem;
+		background-color: var(--clr-contacts-block-bg);
+		& > h2 {
+			margin-bottom: var(--contacts-gap);
+		}
+	}
+}
