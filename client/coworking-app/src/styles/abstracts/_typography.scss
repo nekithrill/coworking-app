@@ -47,8 +47,8 @@
 	--default-size: 16px;
 
 	// font-family
-	--ff-primary: 'Roboto Mono';
-	--ff-accent: 'Rubik';
+	--ff-primary: 'Rubik';
+	--ff-accent: 'Roboto Mono';
 
 	// font-weights
 	--fw-regular: 400;
@@ -63,12 +63,9 @@
 	--fs-h5: 0.85rem;
 	--fs-h6: 0.65rem;
 
-	--fs-logo: var(--fs-h1);
-	--fs-body: var(--fs-h4);
+	--fs-logo: 2.5rem;
+	--fs-text: var(--fs-h4);
+	--fs-body: var(--fs-text);
 	--fs-nav: var(--fs-h3);
 	--fs-button: var(--fs-h3);
-
-	--fs-section-heading: 3.5rem;
-	--fs-footer: 0.9rem;
-	--fs-select: 1.1rem;
 }
