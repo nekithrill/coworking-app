@@ -1,0 +1,17 @@
+.auth_buttons {
+	position: absolute;
+	top: 5rem;
+	right: 5rem;
+
+	&__login,
+	&__signup {
+		cursor: pointer;
+	}
+
+	&__login {
+		margin-right: 1rem;
+	}
+
+	&__signup {
+	}
+}
