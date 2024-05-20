@@ -1,0 +1,8 @@
+.about {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+
+	margin: 10rem 0 10rem var(--sidebar-width);
+}
