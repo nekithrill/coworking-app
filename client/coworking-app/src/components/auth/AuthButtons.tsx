@@ -1,18 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../../styles/components/_authButtons.scss'
+import AuthModal from './AuthModal'
 
 const AuthButtons: React.FC = () => {
-	const openLogInTab = () => {}
+	const [isOpen, setIsOpen] = useState(false)
+	const [activeTab, setActiveTab] = useState<'login' | 'register'>('login')
 
-	const openSignUpTab = () => {}
+	const openLoginModal = () => {
+		setActiveTab('login')
+		setIsOpen(true)
+	}
+
+	const openRegisterModal = () => {
+		setActiveTab('register')
+		setIsOpen(true)
+	}
+
+	const closeModal = () => setIsOpen(false)
+
 	return (
 		<div className='auth_buttons'>
-			<button className='auth_buttons__login' onClick={openLogInTab}>
-				Log In
+			<button className='auth_buttons__login' onClick={openLoginModal}>
+				Login
 			</button>
-			<button className='auth_buttons__signup' onClick={openSignUpTab}>
+			<button className='auth_buttons__signup' onClick={openRegisterModal}>
 				Sign Up
 			</button>
+
+			<AuthModal isOpen={isOpen} onClose={closeModal} activeTab={activeTab} />
 		</div>
 	)
 }

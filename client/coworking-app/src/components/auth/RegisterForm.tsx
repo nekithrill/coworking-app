@@ -1,29 +1,35 @@
 import React, { useState } from 'react'
 import UserService from '../../services/UserService'
-import '../../styles/components/_loginForm.scss'
+import '../../styles/components/_registerForm.scss'
 
-type LoginFormProps = {
+type RegisterFormProps = {
 	onClose: () => void
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ onClose }) => {
+const RegisterForm: React.FC<RegisterFormProps> = ({ onClose }) => {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
+	const [confirmPassword, setConfirmPassword] = useState('')
 	const [error, setError] = useState('')
 	const [loading, setLoading] = useState(false)
 
 	const handleSubmit = async (event: React.FormEvent) => {
 		event.preventDefault()
+		if (password !== confirmPassword) {
+			setError('Passwords do not match')
+			return
+		}
 
 		try {
 			setLoading(true)
 			setError('')
-			const response = await UserService.login(email, password)
-			console.log('Login successful:', response.data)
+			const response = await UserService.register(email, password)
+			console.log('Registration successful:', response.data)
 			onClose()
 		} catch (error: any) {
 			setError(
-				error.response?.data?.message || 'Login failed. Please try again.'
+				error.response?.data?.message ||
+					'Registration failed. Please try again.'
 			)
 			console.error(error)
 		} finally {
@@ -32,7 +38,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onClose }) => {
 	}
 
 	return (
-		<form className='form-login' onSubmit={handleSubmit}>
+		<form className='form-register' onSubmit={handleSubmit}>
 			<label>
 				Email:
 				<input
@@ -47,18 +53,28 @@ const LoginForm: React.FC<LoginFormProps> = ({ onClose }) => {
 				Password:
 				<input
 					type='password'
-					placeholder='******'
+					placeholder='*****'
 					value={password}
 					onChange={e => setPassword(e.target.value)}
 					required
 				/>
 			</label>
+			<label>
+				Confirm Password:
+				<input
+					type='password'
+					placeholder='*****'
+					value={confirmPassword}
+					onChange={e => setConfirmPassword(e.target.value)}
+					required
+				/>
+			</label>
 			{error && <p className='error'>{error}</p>}
 			<button type='submit' disabled={loading}>
-				{loading ? 'Logging in...' : 'Login'}
+				{loading ? 'Registering...' : 'Register'}
 			</button>
 		</form>
 	)
 }
 
-export default LoginForm
+export default RegisterForm
