@@ -4,7 +4,7 @@ import AuthModal from './AuthModal'
 
 const AuthButtons: React.FC = () => {
 	const [isOpen, setIsOpen] = useState(false)
-	const [activeTab, setActiveTab] = useState<'login' | 'register'>('login')
+	const [activeTab, setActiveTab] = useState<'login' | 'sign up'>('login')
 
 	const openLoginModal = () => {
 		setActiveTab('login')
@@ -12,7 +12,7 @@ const AuthButtons: React.FC = () => {
 	}
 
 	const openRegisterModal = () => {
-		setActiveTab('register')
+		setActiveTab('sign up')
 		setIsOpen(true)
 	}
 

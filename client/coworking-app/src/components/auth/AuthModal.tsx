@@ -7,7 +7,7 @@ import RegisterForm from './RegisterForm'
 type AuthModalProps = {
 	isOpen: boolean
 	onClose: () => void
-	activeTab: 'login' | 'register'
+	activeTab: 'login' | 'sign up'
 }
 
 const AuthModal: React.FC<AuthModalProps> = ({
@@ -15,7 +15,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
 	onClose,
 	activeTab
 }) => {
-	const [currentTab, setCurrentTab] = React.useState<'login' | 'register'>(
+	const [currentTab, setCurrentTab] = React.useState<'login' | 'sign up'>(
 		activeTab
 	)
 
@@ -40,11 +40,11 @@ const AuthModal: React.FC<AuthModalProps> = ({
 
 					<button
 						className={`auth__modal_tab ${
-							currentTab === 'register' ? 'active' : ''
+							currentTab === 'sign up' ? 'active' : ''
 						}`}
-						onClick={() => setCurrentTab('register')}
+						onClick={() => setCurrentTab('sign up')}
 					>
-						Register
+						Sign Up
 					</button>
 
 					<button className='auth__modal-close' onClick={onClose}>
@@ -53,7 +53,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
 				</div>
 				<div className='auth__modal_form'>
 					{currentTab === 'login' && <LoginForm onClose={onClose} />}
-					{currentTab === 'register' && <RegisterForm onClose={onClose} />}
+					{currentTab === 'sign up' && <RegisterForm onClose={onClose} />}
 				</div>
 			</div>
 		</div>
