@@ -5,8 +5,8 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-color: var(--clr-modal-overlay);
-	z-index: 20;
+	background-color: var(--clr-settings-modal-overlay);
+	z-index: 999;
 }
 
 .settings-modal {
@@ -15,22 +15,24 @@
 	height: 33rem;
 	top: 50%;
 	left: 50%;
-	padding: 1.5rem;
-	border-radius: 0.4rem;
-	box-shadow: 0 0 1rem var(--settings-modal-shadow);
-	transform: translate(-50%, -50%);
 
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 
-	background-color: var(--clr-modal-bg);
-	color: var(--clr-modal-text);
+	padding: 1.5rem;
+	border-radius: 0.4rem;
+	box-shadow: 0 0 1rem var(--settings-modal-shadow);
+	transform: translate(-50%, -50%);
+
+	background-color: var(--clr-settings-modal-bg);
+	color: var(--clr-settings-modal-text);
 
 	font-family: var(--ff-accent);
 	font-weight: var(--fw-medium);
 	font-size: var(--fs-h4);
-	z-index: 30;
+
+	z-index: 1000;
 
 	&__content {
 		display: flex;
@@ -113,18 +115,18 @@
 		font-family: var(--ff-accent);
 		font-weight: var(--fw-bold);
 
-		color: var(--clr-modal-button-text);
-		background-color: var(--clr-modal-button-bg);
+		color: var(--clr-settings-modal-button-text);
+		background-color: var(--clr-settings-modal-button-bg);
 		cursor: pointer;
 		transition: color 0.4s ease, background-color 0.4s ease;
 
 		&:hover {
-			background-color: var(--clr-modal-button-bg-hover);
-			color: var(--clr-modal-button-text-hover);
+			background-color: var(--clr-settings-modal-button-bg-hover);
+			color: var(--clr-settings-modal-button-text-hover);
 		}
 
 		&:focus {
-			outline: 0.2rem solid var(--clr-modal-button-text);
+			outline: 0.2rem solid var(--clr-settings-modal-button-text);
 		}
 	}
 }

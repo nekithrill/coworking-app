@@ -2,6 +2,7 @@
 	width: var(--sidebar-width);
 	height: 100%;
 	position: fixed;
+	z-index: 2;
 
 	display: flex;
 	flex-direction: column;
@@ -121,7 +122,11 @@
 						transition: color 0.4s ease;
 
 						& > svg {
-							transition: color 0.4s ease;
+							& > path,
+							circle,
+							g {
+								transition: color 0.4s ease, fill 0.4s ease, stroke 0.4s ease;
+							}
 						}
 					}
 
