@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { IWorkspace } from '../../models/entities/IWorkspace'
 import '../../styles/components/_workspaceCard.scss'
+import NextIcon from '../icons/NextIcon'
+import PrevIcon from '../icons/PrevIcon'
 
 interface WorkspaceCardProps {
 	data: IWorkspace
@@ -68,10 +70,10 @@ const WorkspaceCard: React.FC<WorkspaceCardProps> = ({ data }) => {
 				{data.images && data.images.length > 1 && (
 					<div>
 						<button className='prevButton' onClick={prevSlide}>
-							Prev
+							<PrevIcon color='var(--clr-slider-arrow)' />
 						</button>
 						<button className='nextButton' onClick={nextSlide}>
-							Next
+							<NextIcon color='var(--clr-slider-arrow)' />
 						</button>
 					</div>
 				)}

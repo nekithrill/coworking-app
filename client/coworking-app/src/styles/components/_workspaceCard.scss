@@ -82,9 +82,33 @@
 
 		& .nextButton,
 		.prevButton {
+			--icon-width: 4rem;
+			--icon-height: 4rem;
 			position: absolute;
 			top: 50%;
+
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			width: var(--icon-width);
+			height: var(--icon-height);
 			transform: translateY(-50%);
+
+			background: none;
+			border: none;
+
+			& .icon {
+				width: var(--icon-width);
+				height: var(--icon-height);
+				& > svg {
+					width: var(--icon-width);
+					height: var(--icon-height);
+				}
+			}
+			&:focus {
+				outline: none;
+			}
 		}
 
 		& .nextButton {
