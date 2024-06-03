@@ -5,7 +5,20 @@
 
 	&__login,
 	&__signup {
+		padding: 0.5rem 1rem 0.5rem 1rem;
+		border-radius: 5rem;
+		border: var(--auth-button-border);
+		outline: none;
+		color: var(--auth-button-text);
+		text-transform: uppercase;
+		font-weight: var(--fw-medium);
 		cursor: pointer;
+
+		&:hover,
+		:focus {
+			color: var(--auth-button-text-hover);
+			background-color: var(--auth-button-bg-hover);
+		}
 	}
 
 	&__login {
