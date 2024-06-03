@@ -8,7 +8,7 @@ export default class UserService {
 		email: string,
 		password: string
 	): Promise<AxiosResponse<AuthResponse>> {
-		return $api.post<AuthResponse>('/user/registration', { email, password })
+		return $api.post<AuthResponse>('/user/register', { email, password })
 	}
 
 	static async login(
