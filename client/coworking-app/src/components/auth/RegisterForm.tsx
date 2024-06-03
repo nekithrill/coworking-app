@@ -71,7 +71,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onClose }) => {
 			</label>
 			{error && <p className='error'>{error}</p>}
 			<button type='submit' disabled={loading}>
-				{loading ? 'Registering...' : 'Register'}
+				{loading ? 'Signing up...' : 'Sign Up'}
 			</button>
 		</form>
 	)
