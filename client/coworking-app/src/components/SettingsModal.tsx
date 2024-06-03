@@ -64,7 +64,7 @@ const SettingsModal = ({ isOpen, onClose, onSave }: SettingsModalProps) => {
 					<div className='settings-modal__content_header'>
 						<h2>Settings</h2>
 						<button id='close-button' onClick={onClose}>
-							<CloseIcon color='var(--clr-modal-icon)' />
+							<CloseIcon color='var(--clr-settings-modal-icon)' />
 						</button>
 					</div>
 
