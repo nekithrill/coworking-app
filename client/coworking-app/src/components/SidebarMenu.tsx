@@ -26,7 +26,6 @@ const SidebarMenu = () => {
 		<div className='sidebar'>
 			<div className='sidebar__logo'>
 				<GreenLogo color='var(--clr-logo)' />
-				{/* <Logo /> */}
 				<p className='first-word'>
 					Native<span className='second-word'>Sync</span>
 				</p>
