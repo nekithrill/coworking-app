@@ -60,4 +60,6 @@ userRouter.put(
 	userController.assignRoleUserById
 )
 
+userRouter.get('/refresh', userController.refreshUser)
+
 module.exports = userRouter
