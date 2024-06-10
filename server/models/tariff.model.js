@@ -16,7 +16,7 @@ const tariffSchema = new mongoose.Schema({
 	},
 	duration: {
 		type: String,
-		enum: ['day', 'week', 'month', 'annual'],
+		enum: ['day', 'week', 'month', 'year'],
 		required: true
 	},
 	services: [String],
