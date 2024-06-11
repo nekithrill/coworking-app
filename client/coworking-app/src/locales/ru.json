@@ -1,0 +1,29 @@
+{
+	"home": {
+		"title": "Оглавнение главной"
+	},
+	"news": {
+		"title": "News Title"
+	},
+	"locations": {
+		"title": "Locations Title"
+	},
+	"tariffs": {
+		"title": "Tariffs Title"
+	},
+	"about": {
+		"title": "About Title"
+	},
+	"contacts": {
+		"title": "Contacts Title"
+	},
+	"sidebar": {
+		"title": "Sidebar Title"
+	},
+	"authButtons": {
+		"title": "Auth Buttons Title"
+	},
+	"authModal": {
+		"title": "Auth Modal Title"
+	}
+}
