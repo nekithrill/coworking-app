@@ -1,7 +1,60 @@
-import React from 'react'
+// HomePage.tsx
+import React, { useContext, useEffect, useState } from 'react'
+import BookingModal from '../components/booking/BookingModal'
+import { AuthContext } from '../main'
+import { ITariff } from '../models/entities/ITariff'
+import { IWorkspace } from '../models/entities/IWorkspace'
+import TariffService from '../services/TariffService'
+import WorkspaceService from '../services/WorkspaceService'
 import '../styles/layout/_homePage.scss'
 
 const HomePage: React.FC = () => {
+	const [isBookingModalOpen, setBookingModalOpen] = useState(false)
+	const [workspaces, setWorkspaces] = useState<IWorkspace[]>([])
+	const [tariffs, setTariffs] = useState<ITariff[]>([])
+
+	const { store } = useContext(AuthContext)
+	const user = store.user
+
+	const openBookingModal = () => {
+		if (user) {
+			setBookingModalOpen(true)
+		} else {
+			alert('Please log in to make a booking.')
+		}
+	}
+
+	const closeBookingModal = () => setBookingModalOpen(false)
+
+	useEffect(() => {
+		const fetchWorkspaces = async () => {
+			try {
+				const response = await WorkspaceService.getAllWorkspaces()
+				setWorkspaces(response.data)
+			} catch (error) {
+				console.error('Error fetching workspaces:', error)
+			}
+		}
+
+		const fetchTariffs = async () => {
+			try {
+				const response = await TariffService.getAllTariffs()
+				setTariffs(response.data)
+			} catch (error) {
+				console.error('Error fetching tariffs:', error)
+			}
+		}
+
+		fetchWorkspaces()
+		fetchTariffs()
+	}, [])
+
+	useEffect(() => {
+		if (localStorage.getItem('token')) {
+			store.checkAuth()
+		}
+	}, [store])
+
 	return (
 		<div className='home'>
 			<div className='home__hero'>
@@ -13,7 +66,17 @@ const HomePage: React.FC = () => {
 				</p>
 			</div>
 
-			<button className='bookingButton'>make booking</button>
+			<button className='bookingButton' onClick={openBookingModal}>
+				make booking
+			</button>
+
+			<BookingModal
+				isOpen={isBookingModalOpen}
+				onClose={closeBookingModal}
+				userId={user ? user._id : 'empty'}
+				workspaces={workspaces}
+				tariffs={tariffs}
+			/>
 		</div>
 	)
 }
