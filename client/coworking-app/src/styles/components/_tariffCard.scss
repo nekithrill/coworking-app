@@ -8,7 +8,7 @@
 	padding: 1.5rem;
 
 	border-radius: 8px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	box-shadow: var(--box-shadow);
 
 	&:nth-child(1) {
 		background-color: var(--clr-tariff-daily);
@@ -42,6 +42,7 @@
 				font-size: 1.7rem;
 				font-weight: var(--fw-bold);
 				text-transform: uppercase;
+				color: gold;
 			}
 		}
 
@@ -66,8 +67,9 @@
 				list-style-type: none;
 				& > li {
 					padding: 0.5rem 1rem;
-					background-color: gold;
 					border-radius: 99rem;
+					background-color: gold;
+					user-select: none;
 				}
 			}
 		}

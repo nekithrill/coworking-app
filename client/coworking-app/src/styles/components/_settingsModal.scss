@@ -22,7 +22,7 @@
 
 	padding: 1.5rem;
 	border-radius: 0.4rem;
-	box-shadow: 0 0 1rem var(--settings-modal-shadow);
+	box-shadow: var(--box-shadow);
 	transform: translate(-50%, -50%);
 
 	background-color: var(--clr-settings-modal-bg);

@@ -10,7 +10,7 @@
 	color: var(--clr-news-card-text);
 	border: var(--news-card-border);
 	border-radius: 0.5rem;
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+	box-shadow: var(--box-shadow);
 
 	&__content {
 		display: flex;
