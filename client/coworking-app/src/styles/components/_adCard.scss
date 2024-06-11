@@ -8,7 +8,7 @@
 
 	background-color: var(--clr-ad-card-bg);
 	color: var(--clr-ad-card-text);
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+	box-shadow: var(--box-shadow);
 
 	&__content {
 		display: flex;
