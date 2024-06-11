@@ -15,7 +15,7 @@
 		cursor: pointer;
 
 		&:hover,
-		:focus {
+		&:focus {
 			color: var(--auth-button-text-hover);
 			background-color: var(--auth-button-bg-hover);
 		}
