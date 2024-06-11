@@ -1,6 +1,16 @@
 .error_page {
+	width: 100%;
+
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+
+	margin: 10rem 0 10rem var(--sidebar-width);
+
+	& span {
+		font-weight: var(--fw-regular);
+		margin-left: 2rem;
+		text-transform: none;
+	}
 }
