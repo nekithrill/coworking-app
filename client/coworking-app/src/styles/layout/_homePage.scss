@@ -3,7 +3,7 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	gap: 5rem;
+	gap: 4rem;
 
 	margin: 10rem 0 10rem var(--sidebar-width);
 
@@ -20,6 +20,19 @@
 		width: 15rem;
 		height: 3rem;
 
+		outline: none;
+		border-radius: 3rem;
+
+		text-transform: uppercase;
+		font-weight: var(--fw-medium);
+		color: var(--clr-home-hero-button-text);
+		background: none;
+
 		cursor: pointer;
+
+		&:hover,
+		&:focus {
+			background-color: var(--clr-home-hero-button-bg-hover);
+		}
 	}
 }
