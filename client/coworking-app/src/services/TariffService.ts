@@ -7,7 +7,7 @@ export default class TariffService {
 		name: string,
 		description: string,
 		price: number,
-		duration: 'daily' | 'weekly' | 'monthly',
+		duration: 'day' | 'week' | 'month' | 'year',
 		tariffData?: Partial<ITariff>
 	): Promise<AxiosResponse<ITariff>> {
 		const tariffPayload = {
