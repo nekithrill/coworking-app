@@ -1,8 +1,83 @@
 .about {
+	width: 100%;
+
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 
 	margin: 10rem 0 10rem var(--sidebar-width);
+
+	&__header {
+		width: 40%;
+
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+
+		& > p {
+			margin: 1rem 0 5rem 0;
+		}
+	}
+
+	&__benefits {
+		width: 100%;
+
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 3rem;
+
+		&_card {
+			width: 70%;
+			height: 20rem;
+			border-radius: 0.5rem;
+
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+
+			color: var(--clr-about-card-text);
+			background-color: var(--clr-about-card-bg);
+			box-shadow: var(--box-shadow);
+			overflow: hidden;
+
+			&:nth-child(even) {
+				flex-direction: row-reverse;
+			}
+
+			& > img {
+				width: 35%;
+				height: 100%;
+				display: block;
+				object-fit: cover;
+				object-position: center center;
+			}
+
+			&_content {
+				width: 65%;
+				height: 100%;
+				padding: 2rem;
+
+				display: flex;
+				flex-direction: column;
+
+				& > .card-number {
+					font-size: var(--fs-h1);
+					font-weight: var(--fw-bold);
+					font-family: var(--ff-primary);
+				}
+
+				& > h2 {
+					margin-bottom: 1rem;
+				}
+
+				& > p {
+				}
+			}
+		}
+	}
 }
