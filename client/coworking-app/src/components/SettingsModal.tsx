@@ -87,6 +87,7 @@ const SettingsModal = ({ isOpen, onClose, onSave }: SettingsModalProps) => {
 						<label htmlFor='languageSelect'>Select language:</label>
 						<LanguageIcon color='var(--clr-modal-icon)' />
 						<select
+							disabled
 							id='languageSelect'
 							value={selectedLanguage}
 							onChange={handleChangeLanguage}
