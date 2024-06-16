@@ -3,6 +3,7 @@ import { AuthContext } from '../../main'
 import BookingService from '../../services/BookingService'
 import '../../styles/components/_userPanel.scss'
 import ExpandIcon from '../icons/ExpandIcon'
+import UserIcon from '../icons/UserIcon'
 
 const UserPanel: React.FC = () => {
 	const { store } = useContext(AuthContext)
@@ -11,9 +12,6 @@ const UserPanel: React.FC = () => {
 	const handleLogout = async () => {
 		try {
 			await store.logout()
-			// Переадресация пользователя на страницу входа после успешного выхода
-			// Можно использовать useHistory из react-router-dom для навигации
-			// например: history.push('/login');
 			alert('Logout successful')
 		} catch (error) {
 			console.error('Logout error:', error)
@@ -42,18 +40,19 @@ const UserPanel: React.FC = () => {
 				onClick={() => setIsExpanded(!isExpanded)}
 			>
 				<div className='email'>
-					<p>{store.user?.email}</p>{' '}
+					<UserIcon color='var(--auth-button-text)' />
 					<ExpandIcon color='var(--auth-button-text)' />
 				</div>
 				{isExpanded && (
 					<div className='user__panel_info-details'>
+						<p>{store.user?.email}</p>
 						{/* <p>Id: {store.user?._id}</p> */}
 						<p>Role: {store.user?.role}</p>
 						{/* <p>Activated: {store.user?.isActivated}</p> */}
-						<button onClick={handleLogout}>Logout</button>
 						<button onClick={handleViewBookingHistory}>
 							View Booking History
 						</button>
+						<button onClick={handleLogout}>Logout</button>
 					</div>
 				)}
 			</div>
