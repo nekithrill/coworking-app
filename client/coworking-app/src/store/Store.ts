@@ -66,7 +66,7 @@ export default class AuthStore {
 			localStorage.setItem('token', response.data.accessToken)
 			this.setAuth(true)
 			this.setUser(response.data.user)
-		} catch (error) {
+		} catch (error: any) {
 			console.log(error.response?.data?.message)
 		}
 	}
