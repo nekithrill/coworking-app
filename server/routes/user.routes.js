@@ -19,6 +19,8 @@ userRouter.post('/login', userController.loginUser)
 
 userRouter.post('/logout', authMiddleware, userController.logoutUser)
 
+userRouter.get('/refresh', userController.refreshUser)
+
 userRouter.get(
 	'/activate/:activationLink',
 	authMiddleware,
@@ -59,7 +61,5 @@ userRouter.put(
 	checkCreatorRole,
 	userController.assignRoleUserById
 )
-
-userRouter.get('/refresh', userController.refreshUser)
 
 module.exports = userRouter
