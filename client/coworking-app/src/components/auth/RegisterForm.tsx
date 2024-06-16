@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import { observer } from 'mobx-react-lite'
+import React, { useContext, useState } from 'react'
+import { AuthContext } from '../../main'
 import UserService from '../../services/UserService'
 import '../../styles/components/_registerForm.scss'
 
@@ -7,6 +9,7 @@ type RegisterFormProps = {
 }
 
 const RegisterForm: React.FC<RegisterFormProps> = ({ onClose }) => {
+	const { store } = useContext(AuthContext)
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const [confirmPassword, setConfirmPassword] = useState('')
@@ -70,11 +73,15 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onClose }) => {
 				/>
 			</label>
 			{error && <p className='error'>{error}</p>}
-			<button type='submit' disabled={loading}>
+			<button
+				type='submit'
+				disabled={loading}
+				onClick={() => store.register(email, password)}
+			>
 				{loading ? 'Signing up...' : 'Sign Up'}
 			</button>
 		</form>
 	)
 }
 
-export default RegisterForm
+export default observer(RegisterForm)
