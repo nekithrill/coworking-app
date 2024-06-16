@@ -28,13 +28,11 @@ const createBooking = async (req, res, next) => {
 		const startDate = new Date()
 		const endDate = calculateEndDate(startDate, tariff.duration)
 		const totalPrice = tariff.price * workspace.coefficient
-		const workspaceData = workspace
-		const tariffData = tariff
 
 		const newBooking = await Booking.create({
 			userId,
-			workspaceData,
-			tariffData,
+			workspaceData: workspace,
+			tariffData: tariff,
 			totalPrice,
 			startDate,
 			endDate
@@ -151,13 +149,13 @@ const cancelBooking = async (req, res, next) => {
 const calculateEndDate = (startDate, duration) => {
 	const endDate = new Date(startDate)
 	switch (duration) {
-		case 'daily':
+		case 'day':
 			endDate.setDate(startDate.getDate() + 1)
 			break
-		case 'weekly':
+		case 'week':
 			endDate.setDate(startDate.getDate() + 7)
 			break
-		case 'monthly':
+		case 'month':
 			const year = startDate.getFullYear()
 			let month = startDate.getMonth() + 1
 			let day = startDate.getDate()
