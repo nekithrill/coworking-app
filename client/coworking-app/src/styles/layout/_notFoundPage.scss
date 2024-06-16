@@ -1,3 +1,5 @@
+@import '../abstracts/breakpoints';
+
 .error_page {
 	width: 100%;
 
@@ -7,6 +9,10 @@
 	justify-content: center;
 
 	margin: 10rem 0 10rem var(--sidebar-width);
+
+	@include lg {
+		margin: 10rem 0 10rem 0;
+	}
 
 	& span {
 		font-weight: var(--fw-regular);

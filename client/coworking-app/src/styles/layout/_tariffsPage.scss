@@ -1,3 +1,5 @@
+@import '../abstracts/breakpoints';
+
 .tariffs {
 	width: 100%;
 	display: flex;
@@ -7,6 +9,10 @@
 
 	margin: 10rem 0 10rem var(--sidebar-width);
 
+	@include lg {
+		margin: 10rem 0 10rem 0;
+	}
+
 	&__header {
 		width: 40%;
 
@@ -15,8 +21,18 @@
 		align-items: center;
 		justify-content: center;
 
+		@include lg {
+			width: 70%;
+		}
+
 		& > p {
 			margin-top: 1rem;
+		}
+
+		& > h1 {
+			@include md {
+				font-size: 2.5rem;
+			}
 		}
 	}
 

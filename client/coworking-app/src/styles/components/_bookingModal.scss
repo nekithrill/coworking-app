@@ -1,3 +1,5 @@
+@import '../abstracts/breakpoints';
+
 .booking-modal-overlay {
 	display: flex;
 	justify-content: center;
@@ -22,12 +24,30 @@
 
 	z-index: 1000;
 
+	@include sm {
+		width: 20rem;
+		padding: 1.5rem;
+	}
+
+	@include xs {
+		width: 15rem;
+	}
+
 	&-header {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 
 		margin-bottom: 2rem;
+
+		& > h2 {
+			@include md {
+				font-size: 1.5rem;
+			}
+			@include sm {
+				font-size: 1.3rem;
+			}
+		}
 	}
 
 	&-close {
@@ -83,6 +103,10 @@
 			border-radius: 0.4rem;
 			background-color: var(--clr-booking-info-card-bg);
 			color: var(--clr-booking-info-card-text);
+
+			@include md {
+				display: none;
+			}
 
 			&:nth-child(3) {
 				top: 60%;
