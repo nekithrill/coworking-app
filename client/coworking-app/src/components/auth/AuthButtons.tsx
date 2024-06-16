@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react-lite'
 import React, { useState } from 'react'
 import '../../styles/components/_authButtons.scss'
 import AuthModal from './AuthModal'
@@ -32,4 +33,4 @@ const AuthButtons: React.FC = () => {
 	)
 }
 
-export default AuthButtons
+export default observer(AuthButtons)

@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import { observer } from 'mobx-react-lite'
+import React, { useContext, useState } from 'react'
+import { AuthContext } from '../../main'
 import UserService from '../../services/UserService'
 import '../../styles/components/_loginForm.scss'
 
@@ -7,6 +9,7 @@ type LoginFormProps = {
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({ onClose }) => {
+	const { store } = useContext(AuthContext)
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const [error, setError] = useState('')
@@ -54,11 +57,15 @@ const LoginForm: React.FC<LoginFormProps> = ({ onClose }) => {
 				/>
 			</label>
 			{error && <p className='error'>{error}</p>}
-			<button type='submit' disabled={loading}>
+			<button
+				type='submit'
+				disabled={loading}
+				onClick={() => store.login(email, password)}
+			>
 				{loading ? 'Logging in...' : 'Login'}
 			</button>
 		</form>
 	)
 }
 
-export default LoginForm
+export default observer(LoginForm)
