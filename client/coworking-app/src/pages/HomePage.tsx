@@ -67,13 +67,13 @@ const HomePage: React.FC = () => {
 			</div>
 
 			<button className='bookingButton' onClick={openBookingModal}>
-				make booking
+				Make Booking
 			</button>
 
 			<BookingModal
 				isOpen={isBookingModalOpen}
 				onClose={closeBookingModal}
-				userId={user ? user._id : 'empty'}
+				userId={store.user ? store.user.id : 'empty'}
 				workspaces={workspaces}
 				tariffs={tariffs}
 			/>
