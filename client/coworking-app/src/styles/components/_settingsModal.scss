@@ -117,8 +117,8 @@
 
 		color: var(--clr-settings-modal-button-text);
 		background-color: var(--clr-settings-modal-button-bg);
-		cursor: pointer;
 		transition: color 0.4s ease, background-color 0.4s ease;
+		cursor: pointer;
 
 		&:hover {
 			background-color: var(--clr-settings-modal-button-bg-hover);
