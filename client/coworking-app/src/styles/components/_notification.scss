@@ -1,0 +1,17 @@
+.notification {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	padding: 10px 20px;
+	border-radius: 5px;
+	color: white;
+	&.success {
+		background-color: green;
+	}
+	&.error {
+		background-color: red;
+	}
+	&.info {
+		background-color: blue;
+	}
+}
