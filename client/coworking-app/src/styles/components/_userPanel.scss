@@ -1,0 +1,61 @@
+.user__panel {
+	position: absolute;
+	top: 5rem;
+	right: 5rem;
+
+	&_info {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-between;
+
+		cursor: pointer;
+
+		& .email {
+			display: flex;
+			gap: 1rem;
+
+			padding: 0.5rem 1rem 0.5rem 1rem;
+			border-radius: 99rem;
+			border: var(--auth-button-border);
+			background: none;
+
+			& > p {
+				color: var(--auth-button-text);
+				font-weight: var(--fw-medium);
+				font-size: var(--fs-h4);
+				font-family: var(--ff-accent);
+			}
+
+			& .icon {
+				width: 1.5rem;
+				height: 1.5rem;
+
+				& > svg {
+					width: 1.5rem;
+					height: 1.5rem;
+				}
+			}
+		}
+
+		&-details {
+			padding: 1rem;
+
+			display: flex;
+			flex-direction: column;
+			& > p {
+			}
+
+			& > button {
+			}
+		}
+
+		&.expanded {
+			background-color: #f0f0f0;
+
+			& > .icon {
+				transform: rotate(180deg);
+			}
+		}
+	}
+}
