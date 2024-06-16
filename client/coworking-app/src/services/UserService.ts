@@ -41,8 +41,8 @@ export default class UserService {
 		return $api.put<IUser>(`/user/edit/${id}`, userData)
 	}
 
-	static async refresh(): Promise<void> {
-		return $api.get('/user/refresh')
+	static async refresh(): Promise<AxiosResponse<AuthResponse>> {
+		return $api.get<AuthResponse>('/user/refresh')
 	}
 
 	static assingRoleUserById(
