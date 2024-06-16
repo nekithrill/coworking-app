@@ -19,9 +19,7 @@ const AboutPage: React.FC = () => {
 							Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci
 							id iste quisquam libero veritatis praesentium numquam repellat
 							corporis dicta voluptatem illum, eius quaerat unde esse veniam
-							sequi aut iure fugit labore excepturi deserunt, dolor magnam
-							consectetur? Nam nisi consectetur sunt placeat. Modi dolorem eaque
-							labore nostrum at maxime nesciunt cumque!
+							sequi aut iure fugit labore excepturi deserunt.
 						</p>
 					</div>
 				</div>
@@ -35,9 +33,7 @@ const AboutPage: React.FC = () => {
 							Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci
 							id iste quisquam libero veritatis praesentium numquam repellat
 							corporis dicta voluptatem illum, eius quaerat unde esse veniam
-							sequi aut iure fugit labore excepturi deserunt, dolor magnam
-							consectetur? Nam nisi consectetur sunt placeat. Modi dolorem eaque
-							labore nostrum at maxime nesciunt cumque!
+							sequi aut iure fugit labore excepturi deserunt.
 						</p>
 					</div>
 				</div>
@@ -51,9 +47,7 @@ const AboutPage: React.FC = () => {
 							Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci
 							id iste quisquam libero veritatis praesentium numquam repellat
 							corporis dicta voluptatem illum, eius quaerat unde esse veniam
-							sequi aut iure fugit labore excepturi deserunt, dolor magnam
-							consectetur? Nam nisi consectetur sunt placeat. Modi dolorem eaque
-							labore nostrum at maxime nesciunt cumque!
+							sequi aut iure fugit labore excepturi deserunt.
 						</p>
 					</div>
 				</div>
@@ -67,9 +61,7 @@ const AboutPage: React.FC = () => {
 							Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci
 							id iste quisquam libero veritatis praesentium numquam repellat
 							corporis dicta voluptatem illum, eius quaerat unde esse veniam
-							sequi aut iure fugit labore excepturi deserunt, dolor magnam
-							consectetur? Nam nisi consectetur sunt placeat. Modi dolorem eaque
-							labore nostrum at maxime nesciunt cumque!
+							sequi aut iure fugit labore excepturi deserunt.
 						</p>
 					</div>
 				</div>
