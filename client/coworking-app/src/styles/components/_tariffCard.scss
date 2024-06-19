@@ -7,7 +7,7 @@
 	margin-bottom: 1rem;
 	padding: 1.5rem;
 
-	border-radius: 8px;
+	border-radius: 1rem;
 	box-shadow: var(--box-shadow);
 
 	&:nth-child(1) {
@@ -42,7 +42,7 @@
 				font-size: 1.7rem;
 				font-weight: var(--fw-bold);
 				text-transform: uppercase;
-				color: gold;
+				color: var(--clr-tariff-card-price);
 			}
 		}
 
@@ -68,7 +68,10 @@
 				& > li {
 					padding: 0.5rem 1rem;
 					border-radius: 99rem;
-					background-color: gold;
+					background-color: var(--clr-tariff-card-services-bg);
+					color: var(--clr-tariff-card-services-text);
+					font-weight: var(--fw-medium);
+					font-size: var(--fs-h5);
 					user-select: none;
 				}
 			}
