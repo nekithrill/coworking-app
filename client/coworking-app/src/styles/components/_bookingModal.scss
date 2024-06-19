@@ -20,7 +20,7 @@
 	padding: 2rem;
 	border-radius: 0.5rem;
 	box-shadow: var(--box-shadow);
-	background-color: #fff;
+	background-color: var(--clr-booking-modal-bg);
 
 	z-index: 1000;
 
@@ -90,7 +90,7 @@
 			cursor: pointer;
 
 			&:focus {
-				outline: 0.2rem solid var(--clr-select-outline);
+				outline: 0.2rem solid var(--clr-booking-select-outline);
 			}
 		}
 
@@ -131,7 +131,7 @@
 		& > p {
 			font-weight: var(--fw-medium);
 			font-size: 1.5rem;
-			color: var(--clr-select-text);
+			color: var(--clr-booking-select-text);
 		}
 
 		& > button {
