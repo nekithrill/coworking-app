@@ -31,6 +31,7 @@
 		--clr-menu-item-active: var(--clr-menu-item-hover);
 		--clr-footer-policy: var(--clr-menu-item);
 		--clr-footer-policy-hover: var(--clr-menu-item-hover);
+		--clr-burger: var(--clr-primary-700);
 
 		// Pages
 		--clr-page-bg: var(--clr-primary-100);
@@ -39,9 +40,9 @@
 
 		// Home page
 		--clr-home-hero-heading: ;
-		--clr-home-hero-text: ;
-		--clr-home-hero-button-bg: ;
-		--clr-home-hero-button-text: ;
+		--clr-home-hero-text: var(--clr-page-text);
+		--clr-home-hero-button-bg-hover: var(--clr-primary-200);
+		--clr-home-hero-button-border: var(--clr-primary-700);
 
 		// News page
 		--clr-news-container-tab-bg: var(--clr-accent-200);
@@ -62,67 +63,104 @@
 		--clr-news-card-text: var(--clr-accent-800);
 		--clr-news-card-date: var(--clr-accent-700);
 
-		--clr-ad-card-bg: rgb(230, 255, 172);
+		--clr-ad-card-bg: var(--clr-primary-200);
 		--clr-ad-card-heading: var(--clr-news-card-heading);
 		--clr-ad-card-text: var(--clr-news-card-text);
 		--clr-ad-card-date: var(--clr-news-card-date);
 
 		// Locations page
-		--clr-locations-card-bg: ;
-		--clr-locations-card-text: ;
-		--clr-locations-card-heading: ;
+		--clr-locations-card-bg: var(--clr-primary-100);
+		--clr-locations-card-text: var(--clr-primary-700);
 		--clr-locations-card-sidebar-bg: var(--clr-accent-300);
-		--clr-locations-card-sidebar-text: ;
+		--clr-locations-card-sidebar-text: var(--clr-locations-card-text);
+
+		--clr-slider-arrow: var(--clr-accent-100);
 
 		// Tariffs page
-		--clr-tariff-card-bg: ;
-		--clr-tariff-card-text: ;
-		--clr-tariff-card-price: ;
-		--clr-tariff-card-services-bg: ;
-		--clr-tariff-card-services-text: ;
-		--clr-tariff-card-shadow: ;
+		--clr-tariff-card-text: var(--clr-primary-700);
+		--clr-tariff-card-services-bg: yellow;
+		--clr-tariff-card-services-text: var(--clr-primary-700);
+		--clr-tariff-card-price: gold;
 
-		--clr-tariff-daily: rgb(85, 139, 85);
-		--clr-tariff-weekly: rgb(64, 64, 122);
-		--clr-tariff-monthly: rgb(141, 92, 141);
-		--clr-tariff-annual: rgb(182, 149, 89);
+		--clr-tariff-daily: rgb(112, 185, 112);
+		--clr-tariff-weekly: rgb(110, 110, 177);
+		--clr-tariff-monthly: rgb(182, 114, 182);
+		--clr-tariff-annual: rgb(44, 161, 152);
 
 		// About page
-		--clr-about-card-bg: ;
-		--clr-about-card-text: ;
-		--clr-about-card-shadow: ;
+		--clr-about-card-bg: var(--clr-accent-300);
+		--clr-about-card-text: var(--clr-primary-700);
 
 		// Contacts page
 		--clr-contacts-block-bg: var(--clr-accent-300);
-		--clr-contacts-block-text: ;
-		--clr-contacts-block-shadow: ;
-		--clr-contacts-form-heading: ;
-		--clr-contacts-form-text: ;
-		--clr-contacts-form-input-bg: ;
-		--clr-contacts-form-input-bg-active: ;
-		--clr-contacts-form-input-text: ;
-		--clr-contacts-form-input-outline: ;
-		--clr-contacts-form-button-bg: ;
-		--clr-contacts-form-button-text: ;
+		--clr-contacts-block-text: var(--clr-primary-700);
+		--clr-contacts-form-input-bg: var(--clr-primary-200);
+		--clr-contacts-form-input-bg-active: var(--clr-primary-100);
+		--clr-contacts-form-input-text: var(--clr-primary-700);
+		--clr-contacts-form-input-border: var(--clr-primary-400);
+		--clr-contacts-form-button-bg: var(--clr-accent-200);
+		--clr-contacts-form-button-bg-hover: var(--clr-accent-600);
+		--clr-contacts-form-button-text: var(--clr-accent-800);
+		--clr-contacts-form-button-text-hover: var(--clr-accent-100);
+		--clr-contacts-icon: var(--clr-contacts-block-text);
+		--contacts-container-tab-boxshadow: 0px 5px 0px 0px var(--clr-accent-700);
+		--contacts-container-tab-boxshadow-pressed: 0px 0px 0px 0px
+			var(--clr-accent-700);
 
-		// Modal window
+		// Settings modal window
 		--settings-modal-bg: rgba(0, 0, 0, 0.7);
-		--settings-modal-shadow: rgba(0, 0, 0, 0.3);
 
-		--clr-modal-bg: var(--clr-accent-400);
-		--clr-modal-overlay: hsla(0, 0%, 23%, 0.705);
-		--clr-modal-text: var(--clr-primary-700);
-		--clr-modal-icon: var(--clr-modal-text);
-		--clr-modal-icon-hover: ;
-		--clr-modal-heading: ;
-		--clr-modal-button-bg: var(--clr-secondary-500);
-		--clr-modal-button-text: var(--clr-secondary-100);
-		--clr-modal-button-bg-hover: var(--clr-secondary-100);
-		--clr-modal-button-text-hover: var(--clr-secondary-700);
+		--clr-settings-modal-bg: var(--clr-accent-400);
+		--clr-settings-modal-overlay: hsla(0, 0%, 23%, 0.705);
+		--clr-settings-modal-text: var(--clr-primary-700);
+		--clr-settings-modal-icon: var(--clr-settings-modal-text);
+		--clr-settings-modal-button-bg: var(--clr-accent-700);
+		--clr-settings-modal-button-text: var(--clr-accent-100);
+		--clr-settings-modal-button-bg-hover: var(--clr-accent-100);
+		--clr-settings-modal-button-text-hover: var(--clr-accent-700);
 
 		--clr-select-bg: var(--clr-accent-200);
 		--clr-select-text: var(--clr-primary-700);
 		--clr-select-outline: var(--clr-select-text);
+
+		// Auth modal window
+		--auth-modal-bg: var(--clr-primary-100);
+		--auth-button-bg: var(--clr-primary-100);
+		--auth-button-bg-hover: var(--clr-accent-200);
+		--auth-button-text: var(--clr-accent-600);
+		--auth-button-text-hover: var(--auth-button-text);
+		--auth-button-border: 3px solid var(--auth-button-text);
+
+		--clr-auth-modal-bg: var(--clr-primary-100);
+		--clr-auth-modal-overlay: var(--clr-settings-modal-overlay);
+		--clr-auth-modal-text: var(--clr-primary-700);
+		--clr-auth-modal-icon: var(--clr-auth-modal-text);
+		--clr-auth-modal-active: var(--clr-accent-500);
+		--clr-auth-modal-button-bg: var(--clr-accent-500);
+		--clr-auth-modal-button-text: var(--clr-accent-100);
+		--clr-auth-modal-button-bg-hover: var(--clr-accent-300);
+		--clr-auth-modal-button-text-hover: var(--clr-accent-700);
+
+		// Booking modal window
+		--clr-booking-modal-bg: var(--clr-primary-100);
+		--clr-booking-modal-overlay: var(--clr-settings-modal-overlay);
+		--clr-booking-modal-text: var(--clr-primary-700);
+		--clr-booking-modal-icon: var(--clr-booking-modal-text);
+		--clr-booking-modal-active: var(--clr-accent-500);
+		--clr-booking-modal-button-bg: var(--clr-primary-500);
+		--clr-booking-modal-button-text: var(--clr-primary-100);
+		--clr-booking-modal-button-bg-hover: var(--clr-primary-200);
+		--clr-booking-modal-button-text-hover: var(--clr-primary-700);
+
+		--clr-booking-select-bg: var(--clr-primary-200);
+		--clr-booking-select-text: var(--clr-primary-700);
+		--clr-booking-select-outline: var(--clr-select-text);
+
+		--clr-booking-info-card-bg: var(--clr-primary-200);
+		--clr-booking-info-card-text: var(--clr-primary-700);
+
+		// General
+		--box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
 	}
 
 	.dark-theme {
@@ -142,51 +180,150 @@
 		--clr-accent-600: hsl(120, 49%, 84%);
 		--clr-accent-700: hsl(150, 12%, 97%);
 
-		// Section
-		--clr-section-bg: hsla(210, 10%, 23%, 0.8);
-
 		// Sidebar
-		--clr-sidebar-bg: ;
-		--clr-logo-fw: ;
-		--clr-logo-sw: ;
-		--clr-menu-item: ;
-		--clr-menu-item-hover: ;
-		--clr-menu-item-active: ;
-		--clr-footer-policy: ;
-		--clr-footer-policy-hover: ;
+		--clr-sidebar-bg: var(--clr-accent-300);
+		--clr-logo: var(--clr-accent-700);
+		--clr-logo-fw: var(--clr-logo);
+		--clr-logo-sw: var(--clr-primary-100);
+		--clr-settings-button-bg: var(--clr-primary-100);
+		--clr-settings-button-bg-hover: var(--clr-primary-700);
+		--clr-settings-button-icon: var(--clr-primary-700);
+		--clr-settings-button-icon-hover: var(--clr-primary-100);
+		--clr-menu-item: var(--clr-primary-100);
+		--clr-menu-item-hover: var(--clr-primary-700);
+		--clr-menu-item-active: var(--clr-menu-item-hover);
+		--clr-footer-policy: var(--clr-menu-item);
+		--clr-footer-policy-hover: var(--clr-menu-item-hover);
+		--clr-burger: var(--clr-primary-700);
 
-		// Page
-		--clr-page-bg: ;
-		--clr-page-heading: ;
-		--clr-page-text: ;
+		// Pages
+		--clr-page-bg: var(--clr-primary-200);
+		--clr-page-text: var(--clr-primary-700);
+		--clr-page-block-bg: var(--clr-primary-200);
 
-		// Modal window
+		// Home page
+		--clr-home-hero-heading: ;
+		--clr-home-hero-text: var(--clr-page-text);
+		--clr-home-hero-button-bg-hover: var(--clr-primary-300);
+		--clr-home-hero-button-border: var(--clr-primary-700);
+
+		// News page
+		--clr-news-container-tab-bg: var(--clr-accent-200);
+		--clr-news-container-tab-text: var(--clr-accent-800);
+		--clr-news-container-tab-bg-active: var(--clr-accent-300);
+		--clr-news-container-tab-text-active: var(--clr-accent-800);
+		--news-container-tab-boxshadow: 0px 5px 0px 0px var(--clr-accent-700);
+		--news-container-tab-boxshadow-pressed: 0px 0px 0px 0px
+			var(--clr-accent-700);
+
+		--clr-news-container-filter-bg: var(--clr-primary-400);
+		--clr-news-container-filter-text: var(--clr-primary-700);
+		--clr-news-container-filter-bg-active: var(--clr-primary-300);
+		--clr-news-container-filter-text-active: var(--clr-primary-700);
+
+		--clr-news-card-bg: var(--clr-accent-300);
+		--clr-news-card-heading: var(--clr-accent-800);
+		--clr-news-card-text: var(--clr-accent-800);
+		--clr-news-card-date: var(--clr-accent-700);
+
+		--clr-ad-card-bg: var(--clr-primary-400);
+		--clr-ad-card-heading: var(--clr-news-card-heading);
+		--clr-ad-card-text: var(--clr-news-card-text);
+		--clr-ad-card-date: var(--clr-news-card-date);
+
+		// Locations page
+		--clr-locations-card-bg: var(--clr-primary-100);
+		--clr-locations-card-text: var(--clr-primary-700);
+		--clr-locations-card-sidebar-bg: var(--clr-accent-300);
+		--clr-locations-card-sidebar-text: var(--clr-locations-card-text);
+
+		--clr-slider-arrow: var(--clr-accent-100);
+
+		// Tariffs page
+		--clr-tariff-card-text: var(--clr-primary-700);
+		--clr-tariff-card-services-bg: yellow;
+		--clr-tariff-card-services-text: var(--clr-primary-700);
+		--clr-tariff-card-price: gold;
+
+		--clr-tariff-daily: rgb(112, 185, 112);
+		--clr-tariff-weekly: rgb(110, 110, 177);
+		--clr-tariff-monthly: rgb(182, 114, 182);
+		--clr-tariff-annual: rgb(44, 161, 152);
+
+		// About page
+		--clr-about-card-bg: var(--clr-accent-300);
+		--clr-about-card-text: var(--clr-primary-700);
+
+		// Contacts page
+		--clr-contacts-block-bg: var(--clr-accent-300);
+		--clr-contacts-block-text: var(--clr-primary-700);
+		--clr-contacts-form-input-bg: var(--clr-primary-200);
+		--clr-contacts-form-input-bg-active: var(--clr-primary-100);
+		--clr-contacts-form-input-text: var(--clr-primary-700);
+		--clr-contacts-form-input-border: var(--clr-primary-400);
+		--clr-contacts-form-button-bg: var(--clr-accent-200);
+		--clr-contacts-form-button-bg-hover: var(--clr-accent-600);
+		--clr-contacts-form-button-text: var(--clr-accent-800);
+		--clr-contacts-form-button-text-hover: var(--clr-accent-100);
+		--clr-contacts-icon: var(--clr-contacts-block-text);
+		--contacts-container-tab-boxshadow: 0px 5px 0px 0px var(--clr-accent-700);
+		--contacts-container-tab-boxshadow-pressed: 0px 0px 0px 0px
+			var(--clr-accent-700);
+
+		// Settings modal window
 		--settings-modal-bg: rgba(0, 0, 0, 0.7);
-		--settings-modal-shadow: rgba(0, 0, 0, 0.3);
 
-		--clr-modal-bg: var(--clr-accent-500);
-		--clr-modal-overlay: hsla(0, 0%, 23%, 0.705);
-		--clr-modal-text: ;
-		--clr-modal-icon: ;
-		--clr-modal-heading: ;
-		--clr-modal-button-bg: var(--clr-secondary-500);
-		--clr-modal-button-text: var(--clr-secondary-100);
-		--clr-modal-button-bg-hover: var(--clr-secondary-100);
-		--clr-modal-button-text-hover: var(--clr-secondary-700);
+		--clr-settings-modal-bg: var(--clr-accent-400);
+		--clr-settings-modal-overlay: hsla(0, 0%, 23%, 0.705);
+		--clr-settings-modal-text: var(--clr-primary-100);
+		--clr-settings-modal-icon: var(--clr-settings-modal-text);
+		--clr-settings-modal-button-bg: var(--clr-accent-100);
+		--clr-settings-modal-button-text: var(--clr-accent-700);
+		--clr-settings-modal-button-bg-hover: var(--clr-accent-700);
+		--clr-settings-modal-button-text-hover: var(--clr-accent-100);
 
-		--clr-select-bg: var(--clr-secondary-300);
-		--clr-select-text: var(--clr-secondary-700);
+		--clr-select-bg: var(--clr-accent-600);
+		--clr-select-text: var(--clr-primary-100);
 		--clr-select-outline: var(--clr-select-text);
-	}
 
-	// Card & card's items
-	--clr-card-bg: var(--clr-secondary-300);
-	--clr-card-text: var(--clr-secondary-600);
-	--clr-card-border: var(--clr-secondary-500);
-	--clr-card-shadow: var(--clr-secondary-500);
-	--clr-card-button-bg: var(--clr-secondary-400);
-	--clr-card-button-text: var(--clr-primary-50);
-	--clr-card-button-border: var(--clr-secondary-500);
-	--clr-card-button-bg-hover: var(--clr-secondary-100);
-	--clr-card-button-text-hover: var(--clr-secondary-700);
+		// Auth modal window
+		--auth-modal-bg: var(--clr-primary-100);
+		--auth-button-bg: var(--clr-primary-100);
+		--auth-button-bg-hover: var(--clr-accent-200);
+		--auth-button-text: var(--clr-accent-600);
+		--auth-button-text-hover: var(--auth-button-text);
+		--auth-button-border: 3px solid var(--auth-button-text);
+
+		--clr-auth-modal-bg: var(--clr-primary-100);
+		--clr-auth-modal-overlay: var(--clr-settings-modal-overlay);
+		--clr-auth-modal-text: var(--clr-primary-700);
+		--clr-auth-modal-icon: var(--clr-auth-modal-text);
+		--clr-auth-modal-active: var(--clr-accent-500);
+		--clr-auth-modal-button-bg: var(--clr-accent-500);
+		--clr-auth-modal-button-text: var(--clr-accent-100);
+		--clr-auth-modal-button-bg-hover: var(--clr-accent-300);
+		--clr-auth-modal-button-text-hover: var(--clr-accent-700);
+
+		// Booking modal window
+		--clr-booking-modal-bg: var(--clr-primary-400);
+		--clr-booking-modal-overlay: var(--clr-settings-modal-overlay);
+		--clr-booking-modal-text: var(--clr-primary-100);
+		--clr-booking-modal-icon: var(--clr-booking-modal-text);
+		--clr-booking-modal-active: var(--clr-accent-500);
+		--clr-booking-modal-button-bg: var(--clr-primary-600);
+		--clr-booking-modal-button-text: var(--clr-primary-100);
+		--clr-booking-modal-button-bg-hover: var(--clr-primary-200);
+		--clr-booking-modal-button-text-hover: var(--clr-primary-700);
+		--clr-booking-modal-price: var(--clr-primary-700);
+
+		--clr-booking-select-bg: var(--clr-primary-200);
+		--clr-booking-select-text: var(--clr-primary-700);
+		--clr-booking-select-outline: var(--clr-booking-select-text);
+
+		--clr-booking-info-card-bg: var(--clr-primary-300);
+		--clr-booking-info-card-text: var(--clr-primary-700);
+
+		// General
+		--box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+	}
 }
