@@ -4,6 +4,7 @@ import { IWorkspace } from '../../models/entities/IWorkspace'
 import BookingService from '../../services/BookingService'
 import '../../styles/components/_bookingModal.scss'
 import CloseIcon from '../icons/CloseIcon'
+import { useNotification } from '../notification/NotificationContext'
 
 interface Props {
 	isOpen: boolean
@@ -30,6 +31,8 @@ const BookingModal: React.FC<Props> = ({
 		IWorkspace | undefined
 	>()
 
+	const { showNotification } = useNotification()
+
 	useEffect(() => {
 		const selectedTariff = tariffs.find(
 			(tariff: ITariff) => tariff._id === tariffId
@@ -54,9 +57,11 @@ const BookingModal: React.FC<Props> = ({
 				totalPrice,
 				status: 'pending'
 			})
+			showNotification('Booking successful!', 'success')
 			onClose()
 		} catch (error) {
 			setError('Failed to create booking. Please try again.')
+			showNotification('Booking failed. Please try again.', 'error')
 		} finally {
 			setLoading(false)
 		}
