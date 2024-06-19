@@ -39,7 +39,7 @@ const UserPanel: React.FC = () => {
 				className='user__panel_info'
 				onClick={() => setIsExpanded(!isExpanded)}
 			>
-				<div className='email'>
+				<div className='user'>
 					<UserIcon color='var(--auth-button-text)' />
 					<ExpandIcon color='var(--auth-button-text)' />
 				</div>
