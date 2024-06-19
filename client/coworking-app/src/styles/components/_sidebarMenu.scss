@@ -10,7 +10,7 @@
 	left: 1rem;
 	border: none;
 	background: none;
-	color: var(--clr-menu-item);
+	color: var(--clr-burger);
 	font-size: 2rem;
 
 	z-index: 3;
@@ -237,6 +237,7 @@
 
 			& > p {
 				color: var(--clr-footer-policy);
+				text-align: center;
 			}
 
 			& .copyright {
