@@ -36,6 +36,9 @@
 			@include md {
 				font-size: 2.5rem;
 			}
+			@include sm {
+				font-size: 2rem;
+			}
 		}
 	}
 

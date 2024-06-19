@@ -14,6 +14,10 @@
 
 	@include lg {
 		margin: 10rem 0 10rem 0;
+		--contacts-padding: 2rem;
+	}
+	@include md {
+		--contacts-padding: 1.5rem;
 	}
 
 	&__header {
@@ -45,6 +49,10 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: var(--contacts-gap);
+
+		@include md {
+			width: 90%;
+		}
 	}
 
 	&__info {
@@ -56,6 +64,10 @@
 		padding: 2rem;
 
 		background-color: var(--clr-contacts-block-bg);
+
+		@include sm {
+			width: 90%;
+		}
 
 		&-block {
 			display: flex;
@@ -77,11 +89,42 @@
 
 					font-weight: var(--fw-regular);
 					font-size: var(--fs-h3);
+
+					@include sm {
+						font-size: var(--fs-h4);
+						word-wrap: break-word;
+					}
+
+					@include xs {
+						font-size: var(--fs-h6);
+					}
 				}
 
 				& .icon {
 					width: 2rem;
 					height: 2rem;
+
+					@include md {
+						width: 1.5rem;
+						height: 1.5rem;
+					}
+
+					@include sm {
+						width: 1rem;
+						height: 1rem;
+					}
+
+					& > svg {
+						@include md {
+							width: 1.5rem;
+							height: 1.5rem;
+						}
+
+						@include sm {
+							width: 1rem;
+							height: 1rem;
+						}
+					}
 				}
 			}
 		}
@@ -95,10 +138,13 @@
 		gap: 1rem;
 
 		border-radius: 0.5rem;
-		padding: 2rem;
+		padding: var(--contacts-padding);
 		box-sizing: border-box;
 		background-color: var(--clr-contacts-block-bg);
 
+		@include sm {
+			width: 90%;
+		}
 		& > form {
 			display: flex;
 			flex-direction: column;
@@ -149,21 +195,24 @@
 			}
 
 			& > input {
-				padding: 10px 15px;
-				font-size: 1rem;
-				border-radius: 0.4rem;
-				border: solid 1px #8d8d8d;
-				letter-spacing: 1px;
 				width: 100%;
+				padding: 10px 15px;
+				border-radius: 0.4rem;
+				font-size: 1rem;
+				border: 1px solid var(--clr-contacts-form-input-border);
+				background-color: var(--clr-contacts-form-input-bg);
+				color: var(--clr-contacts-form-input-text);
+				letter-spacing: 1px;
 
 				&:focus,
 				&:valid {
 					outline: none;
-					border: 1px solid grey;
+					border: 1px solid var(--clr-primary-500);
+					background-color: var(--clr-contacts-form-input-bg-active);
 
 					& ~ label {
 						transform: translateY(-70%) translateX(-10px);
-						background-color: #fff;
+						background-color: var(--clr-contacts-form-input-bg-active);
 						padding: 0px 5px;
 						font-weight: var(--fw-medium);
 						font-family: var(--ff-primary);
@@ -179,12 +228,15 @@
 				min-height: 6rem;
 				max-height: 20rem;
 				border-radius: 0.4rem;
-				border: solid 1px #8d8d8d;
+				border: 1px solid var(--clr-contacts-form-input-border);
+				background-color: var(--clr-contacts-form-input-bg);
+				color: var(--clr-contacts-form-input-text);
 
 				&:focus,
 				&:valid {
 					outline: none;
-					border: 1px solid grey;
+					border: 1px solid var(--clr-primary-500);
+					background-color: var(--clr-contacts-form-input-bg-active);
 
 					& ~ label {
 						transform: translateY(-70%) translateX(-10px);
@@ -193,6 +245,7 @@
 						font-weight: var(--fw-medium);
 						letter-spacing: 1px;
 						border: none;
+						background-color: var(--clr-contacts-form-input-bg-active);
 						border-radius: 10px 10px 0 0;
 					}
 				}

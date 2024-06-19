@@ -42,9 +42,14 @@
 		text-transform: uppercase;
 		font-weight: var(--fw-medium);
 		color: var(--clr-home-hero-button-text);
+		border: 3px solid var(--clr-home-hero-button-border);
 		background: none;
 
 		cursor: pointer;
+
+		@include xs {
+			width: 10rem;
+		}
 
 		&:hover,
 		&:focus {
